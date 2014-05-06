@@ -19,6 +19,7 @@ var FacebookStrategy = require('passport-local').Strategy;
 
 var index = require('./routes/index');
 var error = require('./routes/error');
+var signUp = require('./routes/signUp');
 // var tile = require('./routes/tile');
 // var result = require('./routes/result');
 
@@ -73,7 +74,8 @@ app.use(cookieParser());
 app.use(bodyParser());
 app.use(session({secret: "SECRET"}));
 app.use(flash());
-app.use(passport.initialize());
+app.use(passport.initia
+    lize());
 app.use(passport.session());
 //app.use(app.router); <-- DEPRECATED
 // app.use(require('stylus').middleware(path.join(__dirname, 'public')));
@@ -81,6 +83,7 @@ app.use(passport.session());
 // Add routes here
 app.get('/', index.view);
 app.get('/error', error.view);
+app.get('/signUp', signUp.view);
 
 app.use(express.static(path.join(__dirname, '/public')));
 
