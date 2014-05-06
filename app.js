@@ -18,6 +18,7 @@ var FacebookStrategy = require('passport-local').Strategy;
 
 
 var index = require('./routes/index');
+var error = require('./routes/error');
 // var tile = require('./routes/tile');
 // var result = require('./routes/result');
 
@@ -118,6 +119,7 @@ module.exports = app;
 
 // Add routes here
 app.get('/', index.view);
+app.get('/error', error.view);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
