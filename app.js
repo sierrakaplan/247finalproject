@@ -115,7 +115,7 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
-module.exports = app;
+module.exports.app = app;
 
 // Add routes here
 app.get('/', index.view);
