@@ -61,7 +61,6 @@ var app = express();
 
 // view engine setup
 // all environments
-app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.engine('handlebars', handlebars());
 app.set('view engine', 'handlebars');
@@ -121,6 +120,6 @@ module.exports.app = app;
 app.get('/', index.view);
 app.get('/error', error.view);
 
-http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+http.createServer(app).listen(3000, function(){
+  console.log('Express server listening on port ' + 3000);
 });
