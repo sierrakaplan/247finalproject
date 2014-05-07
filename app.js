@@ -74,8 +74,7 @@ app.use(cookieParser());
 app.use(bodyParser());
 app.use(session({secret: "SECRET"}));
 app.use(flash());
-app.use(passport.initia
-    lize());
+app.use(passport.initialize());
 app.use(passport.session());
 //app.use(app.router); <-- DEPRECATED
 // app.use(require('stylus').middleware(path.join(__dirname, 'public')));
