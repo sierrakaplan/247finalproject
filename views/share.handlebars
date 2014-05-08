@@ -5,51 +5,25 @@
   	<script type='text/javascript' src="js/jquery-1.11.1.min.js"></script>     
     <script type='text/javascript' src="js/bootstrap.min.js"></script>
     <script type='text/javascript' src="js/recordmp3.js"></script>
-    <script type='text/javascript' src="js/gallery.js"></script> 
-
+    <script type='text/javascript' src="js/share.js"></script> 
 </head>
 <body>
   	{{>nav}}
-	<div class="container">
-	<div class="row">
-	<div class="row">
-	<div class="col-lg-3 col-sm-4 col-xs-6"><a title="One" href="#"><img class="thumbnail img-responsive One_img" src="img/green_1.jpg"></a></div>
-	<div class="col-lg-3 col-sm-4 col-xs-6"><a title="Two" href="#"><img class="Two_img thumbnail img-responsive" src="img/green_2.jpg"></a></div>
-	<div class="col-lg-3 col-sm-4 col-xs-6"><a title="Three" href="#"><img class="Three_img thumbnail img-responsive" src="img/green_3.jpg"></a></div>
-	<div class="col-lg-3 col-sm-4 col-xs-6"><a title="Four" href="#"><img class="Four_img thumbnail img-responsive" src="img/green_4.jpg"></a></div>
-	<div class="col-lg-3 col-sm-4 col-xs-6"><a title="Five" href="#"><img class="Five_img thumbnail img-responsive" src="img/green_1.jpg"></a></div>
-	<div class="col-lg-3 col-sm-4 col-xs-6"><a title="Six" href="#"><img class="Six_img thumbnail img-responsive" src="img/green_2.jpg"></a></div>
-	<div class="col-lg-3 col-sm-4 col-xs-6"><a title="Seven" href="#"><img class="Seven_img thumbnail img-responsive" src="img/green_3.jpg"></a></div>
-	<div class="col-lg-3 col-sm-4 col-xs-6"><a title="Eight" href="#"><img class="Eight_img thumbnail img-responsive" src="img/green_4.jpg"></a></div>
-	<div class="col-lg-3 col-sm-4 col-xs-6"><a title="Nine" href="#"><img class="Nine_img thumbnail img-responsive" src="img/green_1.jpg"></a></div>
-	<div class="col-lg-3 col-sm-4 col-xs-6"><a title="Ten" href="#"><img class="Ten_img thumbnail img-responsive" src="img/green_2.jpg"></a></div>
-	<div class="col-lg-3 col-sm-4 col-xs-6"><a title="Eleven" href="#"><img class="Eleven_img thumbnail img-responsive" src="img/green_3.jpg"></a></div>
-	<div class="col-lg-3 col-sm-4 col-xs-6"><a title="Twelve" href="#"><img class="Twelve_img thumbnail img-responsive" src="img/green_4.jpg"></a></div>
-	</div>
-	</div>
-	</div>
-	<div class="modal" id="myModal" role="dialog">
-	<div class="modal-dialog">
-	<div class="modal-content">
-	<div class="modal-header">
-	<button class="close" type="button" data-dismiss="modal">×</button>
-	<h3 class="modal-title"></h3>
-	</div>
-	<div class="modal-body">
-	  <div id="modalCarousel" class="carousel">
-	    <div class="carousel-inner"></div>
-	    <a class="carousel-control left" href="#modalCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
-	    <a class="carousel-control right" href="#modalCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>     
-	  </div>
-	</div>
-	<div class="modal-footer">
-	<span id="recordingslist"></span>
-	<button id="record" class="btn btn-default" data-dismiss="modal" onclick="startRecording(this);">Record</button>
-	<button id="stop" class="btn btn-default" data-dismiss="modal" onclick="stopRecording(this);" disabled>Stop</button>
-	<button class="btn btn-default" data-dismiss="modal">Close</button>
-	</div>
-	</div>
-	</div>
-	</div>        
+ 	<div id="bg"><img id="One_img" class="One_img" src="img/green_1.jpg"></div>
+		<nav id="playerNav">
+			<span id="recordingslist"></span>
+			<ul>
+				<li>
+					<button id="record" onclick="startRecording(this);"><span class="green icon-record"></span></button>
+				</li>
+				<li>
+					<button id="stop" onclick="stopRecording(this);" disabled><span class="red icon-stop"></button>
+				</li>
+			</ul>
+		</nav>
+	</div>       
   </body>
 </html>
+
+
+	
