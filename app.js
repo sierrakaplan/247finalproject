@@ -126,6 +126,6 @@ app.use(function(err, req, res, next) {
 });
 module.exports.app = app;
 
-http.createServer(app).listen(3000, function(){
+http.createServer(app).listen(process.env.PORT || 3000, function(){
   console.log('Express server listening on port ' + 3000);
 });
