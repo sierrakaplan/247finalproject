@@ -1,19 +1,25 @@
-<html>
-<head>
-
-	<title>{{title}}</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-
-	<!--<link href="stylesheets/style.css" rel="stylesheet">
-	<link rel="stylesheet" href="stylesheets/fonts/stylesheet.css" type="text/css" charset="utf-8" />-->
-	<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-
+<!DOCTYPE html>
+<html lang="en">
+	{{> header}}
 </head>
 <body>
-	<p> LEFJIEJFOEOWIJFEIOJ </p>
-
+	{{> nav}}
+	<div id="audio-player" class="audio-player-wrapper">
+ 		<div id="bg" class="audio-player-image"></div>
+		<nav id="playerNav">
+			<ul class="audio-player-controls">
+				<li class="green">
+					<a role="button" class="audio-player-button icon-backward"></a>
+				</li>
+				<li class="red">
+					<a role="button" class="audio-player-button audio-player-place-pause-button icon-play"></a>
+				</li>
+				<li class="blue">
+					<a role="button" class="audio-player-button icon-forward"></a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+	<script type='text/javascript' src="js/audio.js"></script> 
 </body>
 </html>

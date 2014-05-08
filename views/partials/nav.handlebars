@@ -1,0 +1,37 @@
+<script type="text/javascript"> 
+    function changeText(text)
+    {
+        var display = document.getElementById('text-display');
+        display.innerHTML = "";
+        display.innerHTML = text;
+    }
+         
+    function defaultText()
+    {
+        var display = document.getElementById('text-display');
+        display.innerHTML = "";
+        display.innerHTML = "Storytime";
+    }     
+</script>
+<nav id="colorNav">
+	<ul>
+		<li class="green">
+			<a href="/" class="icon-home2" onmouseover="changeText('Listen to my story')" onmouseout="defaultText()"></a>
+		</li>
+		<li class="red">
+			<a href="/share" class="icon-heart" onmouseover="changeText('Share your story')" onmouseout="defaultText()"></a>
+		</li>
+		<li class="blue">
+			<a href="/connect" class="icon-paint2" onmouseover="changeText('Connect and draw')" onmouseout="defaultText()"></a>
+		</li>
+		<!--<li class="yellow">
+			<a href="/account" class="icon-beaker"></a>
+		</li>
+		<li class="purple">
+			<a href="/chat" class="icon-comments"></a>
+		</li>-->
+		<li>
+			<div id="text-display">Storytime</div>
+		</li>
+	</ul>
+</nav>
