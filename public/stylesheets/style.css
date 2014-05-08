@@ -5,11 +5,10 @@
 a {
   color: #00b7ff;
 }*/
-
 /*----------------------------
   Gallery Audio
 -----------------------------*/
-.audio-player-wrapper {
+/*.audio-player-wrapper {
   width: 100%;
   margin: 0;
   position: absolute;
@@ -86,20 +85,119 @@ a {
   display: block;
   width: 133px;
   margin: 15px auto 0 auto; 
+}*/
+#bg {
+  position: fixed; 
+  top: -50%; 
+  left: -50%; 
+  width: 200%; 
+  height: 200%;
+  z-index: -1;
+}
+#bg img {
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  bottom: 0; 
+  margin: auto; 
+  min-width: 25%;
+  min-height: 25%;
+}
+#playerNav > ul {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  margin:0 auto !important;
+  padding: 10px;
+}
+#playerNav > ul > li { /* will style only the top level li */
+  list-style: none !important;
+  display: inline-block !important;
+  line-height: 1 !important;
+  margin: 1px !important;
+  border-radius: 3px !important;
+  padding: 20px;
+}
+#playerNav > ul > li > a {
+  color:inherit !important;
+  text-decoration:none !important;
+  font-size: 30px !important;
+}
+#playerNav li ul {
+  position:absolute;
+  list-style:none;
+  text-align:center;
+  width:180px;
+  left:50%;
+  margin-left:-90px;
+  top:70px;
+  font:bold 12px 'Open Sans Condensed', sans-serif;
+  max-height:0px;
+  overflow:hidden;
+  -webkit-transition:max-height 0.4s linear;
+  -moz-transition:max-height 0.4s linear;
+  transition:max-height 0.4s linear;
+}
+#playerNav li ul li {
+  background-color:#313131;
+}
+#playerNav li ul li a {
+  padding:12px;
+  color:#fff !important;
+  text-decoration:none !important;
+  display:block;
+}
+#playerNav li ul li:nth-child(odd){ /* zebra stripes */
+  background-color:#363636;
+}
+#playerNav li ul li:hover{
+  background-color:#444;
+}
+#playerNav li ul li:first-child{
+  border-radius:3px 3px 0 0;
+  margin-top:25px;
+  position:relative;
+}
+#playerNav li ul li:first-child:before{ /* the pointer tip */
+  content:'';
+  position:absolute;
+  width:1px;
+  height:1px;
+  border:5px solid transparent;
+  border-bottom-color:#313131;
+  left:50%;
+  top:-10px;
+  margin-left:-5px;
+}
+#playerNav li ul li:last-child{
+  border-bottom-left-radius:3px;
+  border-bottom-right-radius:3px;
+}
+#playerNav li:hover ul{
+  max-height:200px; /* Increase when adding more dropdown items */
+}
+#playerNav li.title{
+  width: 100%; 
+  text-align: right;
 }
 /*----------------------------
   The Navigation Menu
 -----------------------------*/
-#title {
-  padding: 10px;
+@font-face {
+  font-family: 'moonBold';
+  src:url('../font/moonBold.ttf');
+}
+#text-display {
+  font-family: 'moonBold';
+  font-size: 75px;
   position: absolute;
   right: 0px;
   top: 0px;
 }
-#colorNav > ul {
-  /*width: 450px; /* Increase when adding more menu items */
-  padding: 10px !important;
+#colorNav > ul, #text-display {
   margin:0 auto !important;
+  padding: 10px;
 }
 #colorNav > ul > li { /* will style only the top level li */
   list-style: none !important;
@@ -107,13 +205,12 @@ a {
   line-height: 1 !important;
   margin: 1px !important;
   border-radius: 3px !important;
-  position:relative !important;
+  padding: 20px;
 }
 #colorNav > ul > li > a {
   color:inherit !important;
   text-decoration:none !important;
-  font-size:24px !important;
-  padding: 25px !important;
+  font-size: 30px !important;
 }
 #colorNav li ul {
   position:absolute;
@@ -175,11 +272,11 @@ a {
 /*----------------------------
   Color Themes
 -----------------------------*/
-#colorNav li.green{ background-color:#00c08b; color:#127a5d;}
-#colorNav li.red{ background-color:#ea5080;color:#aa2a52;}
-#colorNav li.blue{ background-color:#53bfe2;color:#2884a2;}
-#colorNav li.yellow{ background-color:#f8c54d;color:#ab8426;}
-#colorNav li.purple{ background-color:#df6dc2;color:#9f3c85;}
+#playerNav li.green, #colorNav li.green{ background-color:#00c08b; color:#127a5d;}
+#playerNav li.red, #colorNav li.red{ background-color:#ea5080;color:#aa2a52;}
+#playerNav li.blue, #colorNav li.blue{ background-color:#53bfe2;color:#2884a2;}
+#playerNav li.yellow, #colorNav li.yellow{ background-color:#f8c54d;color:#ab8426;}
+#playerNav li.purple. #colorNav li.purple{ background-color:#df6dc2;color:#9f3c85;}
 /*----------------------------
   Gallery
 -----------------------------*/
