@@ -1,4 +1,5 @@
 var express = require('express');
+var socket = require('socket.io');
 var http = require('http');
 var path = require('path');
 var favicon = require('static-favicon');
@@ -129,10 +130,39 @@ module.exports.app = app;
 
 
 var server = http.createServer(app).listen(process.env.PORT || 3000, function(){
-
   console.log('Express server listening on port ' + 3000);
 });
 
-app.set('server', server);
+var io = socket.listen(server);
+
+    // SOCKET IO
+    var active_connections = 0;
+    io.sockets.on('connection', function (socket) {
+
+        active_connections++;
+        console.log(active_connections);
+
+        io.sockets.emit('user:connect', active_connections);
+
+        socket.on('disconnect', function () {
+            active_connections--;
+            io.sockets.emit('user:disconnect', active_connections);
+        });
+
+          // EVENT: User starts drawing something
+        socket.on('draw:progress', function (uid, co_ordinates) {
+            
+           io.sockets.emit('draw:progress', uid, co_ordinates)
+
+        });
+
+        // EVENT: User stops drawing something
+        socket.on('draw:end', function (uid, co_ordinates) {
+            
+          io.sockets.emit('draw:end', uid, co_ordinates)
+
+        });
+      
+    });
 
 

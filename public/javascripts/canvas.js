@@ -3,7 +3,7 @@ tool.maxDistance = 45;
 
 
 // Initialise Socket.io
-var socket = io.connect('/');
+var socket = io.connect('/connect');
 
 // Random User ID
 // Used when sending data
@@ -65,6 +65,8 @@ var timer_is_active = false;
 
 function onMouseDown(event) {
 
+    console.log("User mouse down - drawing");
+
     var point = event.point;
 
     path = new Path();
@@ -72,6 +74,8 @@ function onMouseDown(event) {
     path.add(event.point);
 
     // The data we will send every 100ms on mouse drag
+    console.log("Color:" + active_color_rgb);
+
     path_to_send = {
         rgba : active_color_json,
         start : event.point,
