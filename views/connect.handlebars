@@ -1,22 +1,9 @@
 
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<title>{{title}}</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-
-		<link href="stylesheets/style.css" rel="stylesheet">>
-		<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-		<script src='/socket.io/socket.io.js'> </script>
-        <script src='/javascripts/lib/zepto.js'> </script>
-        <script src='/javascripts/lib/paper.js'> </script>
-        <script src='/javascripts/canvas.js', type="text/paperscript", canvas="myCanvas"> </script>
-	</head>
-    
-
+<head>
+  {{>header}} 
+</head>
 <body>
   	{{>nav}}
 
@@ -46,9 +33,6 @@
             <input type="range", min="0", max="255", value="200", id="opacity"> </input>
         </label>
 		<canvas id="myCanvas", resize="true"> </canvas>
+
   </body>
 </html>
-
-
-			
-    

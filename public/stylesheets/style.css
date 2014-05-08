@@ -34,7 +34,7 @@ button#record:disabled, button#stop:disabled {
   height: 200%;
   z-index: -1;
 }
-#bg img {
+#bg img{
   position: absolute; 
   top: 0; 
   left: 0; 
