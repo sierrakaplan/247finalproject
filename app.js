@@ -19,6 +19,7 @@ var FacebookStrategy = require('passport-local').Strategy;
 
 var index = require('./routes/index');
 var error = require('./routes/error');
+var signUp = require('./routes/signUp');
 // var tile = require('./routes/tile');
 // var result = require('./routes/result');
 
@@ -75,9 +76,15 @@ app.use(session({secret: "SECRET"}));
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
-//app.use(app.router);
-app.use(require('stylus').middleware(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'public')));
+//app.use(app.router); <-- DEPRECATED
+// app.use(require('stylus').middleware(path.join(__dirname, 'public')));
+
+// Add routes here
+app.get('/', index.view);
+app.get('/error', error.view);
+app.get('/signUp', signUp.view);
+
+app.use(express.static(path.join(__dirname, '/public')));
 
 // development only
 if ('development' == app.get('env')) {
@@ -115,10 +122,6 @@ app.use(function(err, req, res, next) {
     });
 });
 module.exports.app = app;
-
-// Add routes here
-app.get('/', index.view);
-app.get('/error', error.view);
 
 http.createServer(app).listen(3000, function(){
   console.log('Express server listening on port ' + 3000);
