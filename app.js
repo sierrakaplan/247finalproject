@@ -16,10 +16,11 @@ var errorHandler = require ('errorhandler');
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-local').Strategy;
 
-
 var index = require('./routes/index');
 var error = require('./routes/error');
 var signUp = require('./routes/signUp');
+var share = require('./routes/share');
+var connect = require('./routes/connect');
 // var tile = require('./routes/tile');
 // var result = require('./routes/result');
 
@@ -83,6 +84,8 @@ app.use(passport.session());
 app.get('/', index.view);
 app.get('/error', error.view);
 app.get('/signUp', signUp.view);
+app.get('/share', share.view);
+app.get('/connect', connect.view);
 
 app.use(express.static(path.join(__dirname, '/public')));
 

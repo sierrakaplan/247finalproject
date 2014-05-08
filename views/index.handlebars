@@ -1,23 +1,20 @@
-<html>
-<head>
-
-	<title>{{title}}</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-
-	<link href="stylesheets/style.css" rel="stylesheet">
-	<link rel="stylesheet" href="stylesheets/fonts/stylesheet.css" type="text/css" charset="utf-8" />
-	<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-
+<!DOCTYPE html>
+<html lang="en">
+	{{> header}}
 </head>
 <body>
-<<<<<<< HEAD
-	<p>laksjflksjflsdkjflkj</p>
-=======
-	<p> LEFJIEJFOEOWIJFEIOJ </p>
->>>>>>> FETCH_HEAD
-
+	{{> nav}}
+	<img id="title" src="img/listen.png" alt="gallery">	
+	<div id="audio-player" class="audio-player-wrapper">
+ 		<div class="audio-player-image"></div>
+	  	<div class="audio-player-controls">
+		    <span class="audio-player-button-wrappers">
+		      <a role="button" class="audio-player-button small icon-backward"></a>
+		      <a role="button" class="audio-player-button audio-player-place-pause-button icon-play "></a>
+		      <a role="button" class="audio-player-button small icon-forward"></a>
+		    </span>
+	  	</div>
+	</div>
+	<script type='text/javascript' src="js/audio.js"></script> 	
 </body>
 </html>
