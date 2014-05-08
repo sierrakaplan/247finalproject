@@ -5,19 +5,31 @@ function startUserMedia(stream) {
   input.connect(audio_context.destination);
   recorder = new Recorder(input);
 }
-function startRecording(a) {
+function startRecording(button) {
   recordingslist.innerHTML = "";
   recorder && recorder.record();
-  a.disabled = true;
-  a.nextElementSibling.disabled = false;
+  button.disabled = true;
+  var nextButton = document.getElementById("stop");
+  nextButton.disabled = false;
+  changePrompt();
 }
-function stopRecording(a) {
+function stopRecording(button) {
   recorder && recorder.stop();
-  a.disabled = true;
-  a.previousElementSibling.disabled = false;
+  button.disabled = true;
+  var prevButton = document.getElementById("record");
+  prevButton.disabled = false;
   // create WAV download link using audio data blob
   createDownloadLink();
+  changeImage();
   recorder.clear();
+}
+function changePrompt() {
+  var elem = document.getElementById("One_img");
+  elem.src = "img/prompts.jpg";
+}
+function changeImage() {
+  var elem = document.getElementById("One_img");
+  elem.src = "img/post_1.jpg";
 }
 function createDownloadLink() {
   recorder && recorder.exportWAV(function(blob) {

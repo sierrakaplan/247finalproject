@@ -9,18 +9,21 @@
 </head>
 <body>
   	{{>nav}}
- 	<div id="bg"><img class="One_img" src="img/green_1.jpg"></div>
+ 	<div id="bg"><img id="One_img" class="One_img" src="img/green_1.jpg"></div>
 		<nav id="playerNav">
 			<span id="recordingslist"></span>
 			<ul>
-				<li class="green">
-					<a id="record" href="#" role="button" class="icon-heart" onclick="startRecording(this);"></a>
+				<li>
+					<button id="record" onclick="startRecording(this);"><span class="green icon-record"></span></button>
 				</li>
-				<li class="red">
-					<a id="stop" href="#" role="button" class="icon-star" onclick="stopRecording(this);" disabled></a>
+				<li>
+					<button id="stop" onclick="stopRecording(this);" disabled><span class="red icon-stop"></button>
 				</li>
 			</ul>
 		</nav>
 	</div>       
   </body>
 </html>
+
+
+	

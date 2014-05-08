@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'icomoon';
-	src:url('../font/icomoon.eot?-jrta9y');
-	src:url('../font/icomoon.eot?#iefix-jrta9y') format('embedded-opentype'),
-		url('../font/icomoon.woff?-jrta9y') format('woff'),
-		url('../font/icomoon.ttf?-jrta9y') format('truetype'),
-		url('../font/icomoon.svg?-jrta9y#icomoon') format('svg');
+	src:url('../font/icomoon.eot?honadn');
+	src:url('../font/icomoon.eot?#iefixhonadn') format('embedded-opentype'),
+		url('../font/icomoon.woff?honadn') format('woff'),
+		url('../font/icomoon.ttf?honadn') format('truetype'),
+		url('../font/icomoon.svg?honadn#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -77,13 +77,16 @@
 .icon-heart2:before {
 	content: "\e611";
 }
+.icon-stop:before {
+	content: "\e617";
+}
 .icon-play:before {
 	content: "\e612";
 }
 .icon-pause:before {
 	content: "\e613";
 }
-.icon-stop:before {
+.icon-stop2:before {
 	content: "\e614";
 }
 .icon-backward:before {
@@ -91,4 +94,13 @@
 }
 .icon-forward:before {
 	content: "\e616";
+}
+.icon-microphone:before {
+	content: "\e618";
+}
+.icon-record:before {
+	content: "\e619";
+}
+.icon-stop3:before {
+	content: "\e61a";
 }
