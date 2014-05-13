@@ -7,7 +7,7 @@ var LocalUserSchema = new mongoose.Schema({
 	pronoun: String,
 	birthyear: String,
 	salt: String,
-	hash: String,
+	hash: String
 });
 
 LocalUserSchema.statics.signup = function(username, password, email, pronoun, birthyear, done) {
