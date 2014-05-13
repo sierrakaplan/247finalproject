@@ -93,6 +93,7 @@ app.get('/error', error.view);
 app.get('/signUp', signUp.view);
 app.get('/share', share.view);
 app.get('/connect', connect.view);
+app.post('/register', register.create);
 
 app.use(express.static(path.join(__dirname, '/public')));
 
