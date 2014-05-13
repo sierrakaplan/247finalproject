@@ -26,10 +26,16 @@ var connect = require('./routes/connect');
 // var result = require('./routes/result');
 
 //DATABASE
-// var local_database_name = 'finalprojectdb';
-// var local_database_uri  = 'mongodb://localhost/' + local_database_name
-// var database_uri = process.env.MONGOLAB_URI || local_database_uri
-// mongoose.connect(database_uri);
+var local_database_name = 'finalprojectdb';
+var local_database_uri  = 'mongodb://localhost/' + local_database_name
+var database_uri = process.env.MONGOLAB_URI || local_database_uri
+mongoose.connect(database_uri, function (err, res) {
+    if (err) {
+      console.log ('ERROR connecting to: ' + database_uri + '. ' + err);
+    } else {
+      console.log ('Succeeded connected to: ' + database_uri);
+  }
+});
 
 
 passport.use(new LocalStrategy(
