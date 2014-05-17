@@ -3,14 +3,15 @@ var hash = require('../util/hash');
 
 var LocalUserSchema = new mongoose.Schema({
 	username: String,
-	email: String,
+	password: String
+	/*email: String,
 	pronoun: String,
 	birthyear: String,
 	salt: String,
-	hash: String
+	hash: String*/
 });
 
-LocalUserSchema.statics.signup = function(username, password, email, pronoun, birthyear, done) {
+/*LocalUserSchema.statics.signup = function(username, password, email, pronoun, birthyear, done) {
 	var User = this;
 	User.find({ username: username }, function(err, user) {
 		if (err) throw err;
@@ -32,8 +33,38 @@ LocalUserSchema.statics.signup = function(username, password, email, pronoun, bi
 			});
 		}
 	})
-};
+};*/
 
+LocalUserSchema.statics.signup = function(username, password, done) {
+	var User = this;
+	User.find({ username: username }, function(err, user) {
+		if (err) throw err;
+		if (user.length > 0) {
+			done("Username already exists.", null);
+		} else {
+			User.create({
+				username : username,
+				password : password
+			}, function(err, user){
+				done(err, user);
+			});
+		}
+	})
+};
+LocalUserSchema.statics.checkExistence = function(username, password, done) {
+	var User = this;
+	User.find({ username: username }, function(err, user) {
+		if (err) throw err;
+		console.log("checkExistence");
+		if (user.username == username && user.password == password) {
+			console.log(username);
+			console.log('here');
+			done(err, user);
+		} else {
+			done(err, user);
+		}
+	})
+};
 
 
 var User = mongoose.model('userauths', LocalUserSchema);

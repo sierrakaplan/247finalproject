@@ -327,3 +327,46 @@ button#record:disabled, button#stop:disabled {
   width:5%;  
 }
 #recordingslist audio { display: inline; float:left; margin-bottom: 0;}
+/*----------------------------
+  Login
+-----------------------------*/
+.show_hide {
+  display:none;
+}
+.logbar  {
+  position: absolute;
+  right: 0px;
+  background-color: #f8c54d;
+  padding: 20px;
+  color: #fff;
+  float: left;
+  border-radius: 3px;
+  width: 500%;
+}
+.login-text, input:focus, input:hover, input:active  {
+  border-style: none;
+  background-color: white;
+  box-shadow: none !important;
+}
+input:-webkit-autofill{
+    -webkit-box-shadow: none !important;
+}
+.sign-in {
+  background-color: #ea5080;
+  border-style: none;
+}
+.sign-in:hover {
+  background-color: #aa2a52;
+}
+.register-center {
+  width: 100%;
+  text-align: center;
+}
+.register-link {
+  color: #555;
+  font-size: 18px;
+}
+.register-link:hover {
+  text-decoration: none;
+  color: #3f3f3f;
+}

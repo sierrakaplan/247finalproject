@@ -23,12 +23,10 @@ var signUp = require('./routes/signUp');
 var share = require('./routes/share');
 var connect = require('./routes/connect');
 var register = require('./routes/register');
-// var tile = require('./routes/tile');
-// var result = require('./routes/result');
 
-//DATABASE
+//Setting up database
 var local_database_name = 'finalprojectdb';
-var local_database_uri  = 'mongodb://localhost/' + local_database_name
+var local_database_uri  = 'mongodb://127.0.0.1:27017/' + local_database_name
 var database_uri = process.env.MONGOLAB_URI || local_database_uri
 mongoose.connect(database_uri, function (err, res) {
     if (err) {
@@ -38,7 +36,50 @@ mongoose.connect(database_uri, function (err, res) {
   }
 });
 
+var app = express();
 
+// view engine setup
+// all environments
+app.set('views', path.join(__dirname, 'views'));
+app.engine('handlebars', handlebars());
+app.set('view engine', 'handlebars');
+app.use(favicon());
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
+app.use(methodOverride());
+app.use(cookieParser());
+app.use(bodyParser());
+app.use(session({secret: "SECRET"}));
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+//app.use(app.router); <-- DEPRECATED
+// app.use(require('stylus').middleware(path.join(__dirname, 'public')));
+
+function userRequired(req, res, next) {
+  if (req.session.user_id) {
+    next();
+  } else {
+    res.redirect('/error');
+  }
+};
+
+// Add routes here
+app.get('/', index.view);
+app.post('/', index.login);
+app.get('/error', error.view);
+app.get('/signUp', signUp.view);
+app.get('/share', userRequired, share.view);
+app.get('/connect', userRequired, connect.view);
+app.get('/register', register.view);
+app.post('/register', register.create);
+
+
+
+
+app.use(express.static(path.join(__dirname, '/public')));
+/*
 passport.use(new LocalStrategy(
     function(username, password, done) {
         User.findOne({ username: username},function(err, user) {
@@ -64,40 +105,7 @@ passport.deserializeUser(function(id, done) {
   User.findById(id, function(err, user) {
     done(err, user);
   });
-});
-
-
-var app = express();
-
-// view engine setup
-// all environments
-app.set('views', path.join(__dirname, 'views'));
-app.engine('handlebars', handlebars());
-app.set('view engine', 'handlebars');
-app.use(favicon());
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
-app.use(methodOverride());
-app.use(cookieParser());
-app.use(bodyParser());
-app.use(session({secret: "SECRET"}));
-app.use(flash());
-app.use(passport.initialize());
-app.use(passport.session());
-//app.use(app.router); <-- DEPRECATED
-// app.use(require('stylus').middleware(path.join(__dirname, 'public')));
-
-// Add routes here
-app.get('/', index.view);
-app.get('/error', error.view);
-app.get('/signUp', signUp.view);
-app.get('/share', share.view);
-app.get('/connect', connect.view);
-app.get('/register', register.view);
-app.post('/register', register.create);
-
-app.use(express.static(path.join(__dirname, '/public')));
+});*/
 
 // development only
 if ('development' == app.get('env')) {
