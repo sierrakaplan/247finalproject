@@ -62,21 +62,21 @@ module.exports = function(app, passport) {
 	// ERROR ==============================
 	// =====================================
 	app.get('/error', function(req, res) {
-		res.render('error.ejs');
+		res.render('error.ejs', {  message: req.flash('errorMessage'), user : req.user });
 	});
 
 	// =====================================
 	// SHARE ==============================
 	// =====================================
 	app.get('/share', isLoggedIn, function(req, res) {
-		res.render('share.ejs');
+		res.render('share.ejs', {  message: req.flash('loginMessage'), user : req.user });
 	});
 
 	// =====================================
 	// CONNECT ==============================
 	// =====================================
 	app.get('/connect', isLoggedIn, function(req, res) {
-		res.render('connect.ejs');
+		res.render('connect.ejs', {  message: req.flash('loginMessage'), user : req.user });
 	});
 };
 

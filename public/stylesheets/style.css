@@ -208,8 +208,8 @@ button#record:disabled, button#stop:disabled {
 #text-display {
   font-family: 'moonBold';
   font-size: 75px;
-  position: absolute;
-  right: 0px;
+  position: relative;
+  left: 0px;
   top: 0px;
 }
 #colorNav > ul, #text-display {
@@ -336,6 +336,7 @@ button#record:disabled, button#stop:disabled {
   float: left;
   border-radius: 3px;
   width: 500%;
+  z-index: 100;
 }
 .login-text, input:focus, input:hover, input:active  {
   border-style: none;
