@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<%- include partials/header.ejs %>
+  	<script type='text/javascript' src="js/jquery-1.11.1.min.js"></script>     
+    <script type='text/javascript' src="js/bootstrap.min.js"></script>
+    <script type='text/javascript' src="js/recordmp3.js"></script>
+    <script type='text/javascript' src="js/share.js"></script> 
+</head>
+<body>
+	<%- include partials/nav.ejs %>
+ 	<div id="bg"><img id="One_img" class="One_img" src="img/green_1.jpg"></div>
+		<nav id="playerNav">
+			<span id="recordingslist"></span>
+			<ul>
+				<li>
+					<button id="record" onclick="startRecording(this);"><span class="green icon-record"></span></button>
+				</li>
+				<li>
+					<button id="stop" onclick="stopRecording(this);" disabled><span class="red icon-stop"></button>
+				</li>
+			</ul>
+		</nav>
+	</div>       
+  </body>
+</html>

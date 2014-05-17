@@ -1,72 +1,27 @@
-var mongoose = require("mongoose");
-var hash = require('../util/hash');
+var mongoose = require('mongoose');
+var bcrypt   = require('bcrypt-nodejs');
 
-var LocalUserSchema = new mongoose.Schema({
-	username: String,
-	password: String
-	/*email: String,
-	pronoun: String,
-	birthyear: String,
-	salt: String,
-	hash: String*/
+// define the schema for our user model
+var userSchema = mongoose.Schema({
+    local : {
+    	username : String,
+        password : String,
+		pronoun : String,
+		birthyear : Number, 
+		story : Number
+    }
 });
 
-/*LocalUserSchema.statics.signup = function(username, password, email, pronoun, birthyear, done) {
-	var User = this;
-	User.find({ username: username }, function(err, user) {
-		if (err) throw err;
-		if (user.length > 0) {
-			done("Username already exists.", null);
-		} else {
-			hash(password, function(err, salt, hash){
-				if(err) throw err;
-				User.create({
-					username : username,
-					email : email,
-					pronoun : pronoun,
-					birthyear : birthyear,
-					salt : salt,
-					hash : hash
-				}, function(err, user){
-					done(err, user);
-				});
-			});
-		}
-	})
-};*/
-
-LocalUserSchema.statics.signup = function(username, password, done) {
-	var User = this;
-	User.find({ username: username }, function(err, user) {
-		if (err) throw err;
-		if (user.length > 0) {
-			done("Username already exists.", null);
-		} else {
-			User.create({
-				username : username,
-				password : password
-			}, function(err, user){
-				done(err, user);
-			});
-		}
-	})
-};
-LocalUserSchema.statics.checkExistence = function(username, password, done) {
-	var User = this;
-	User.find({ username: username }, function(err, user) {
-		if (err) throw err;
-		console.log("checkExistence");
-		if (user.username == username && user.password == password) {
-			console.log(username);
-			console.log('here');
-			done(err, user);
-		} else {
-			done(err, user);
-		}
-	})
+// methods ======================
+// generating a hash
+userSchema.methods.generateHash = function(password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 
+// checking if password is valid
+userSchema.methods.validPassword = function(password) {
+    return bcrypt.compareSync(password, this.local.password);
+};
 
-var User = mongoose.model('userauths', LocalUserSchema);
-
-module.exports = User;
+// create the model for users and expose it to our app
+module.exports = mongoose.model('User', userSchema);

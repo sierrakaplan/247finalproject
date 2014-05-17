@@ -1,4 +1,5 @@
 var express = require('express');
+var app = express();
 var socket = require('socket.io');
 var http = require('http');
 var path = require('path');
@@ -8,7 +9,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var session = require ('express-session');
 var bodyParser = require('body-parser');
-var handlebars = require('express3-handlebars');
 var passport = require('passport');
 var mongoose = require('mongoose');
 var hash = require('./util/hash');
@@ -17,32 +17,21 @@ var errorHandler = require ('errorhandler');
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-local').Strategy;
 
-var index = require('./routes/index');
-var error = require('./routes/error');
-var signUp = require('./routes/signUp');
-var share = require('./routes/share');
-var connect = require('./routes/connect');
-var register = require('./routes/register');
-
 //Setting up database
 var local_database_name = 'finalprojectdb';
 var local_database_uri  = 'mongodb://127.0.0.1:27017/' + local_database_name
 var database_uri = process.env.MONGOLAB_URI || local_database_uri
 mongoose.connect(database_uri, function (err, res) {
     if (err) {
-      console.log ('ERROR connecting to: ' + database_uri + '. ' + err);
+      console.log ('Error connecting to: ' + database_uri + '. ' + err);
     } else {
       console.log ('Succeeded connected to: ' + database_uri);
   }
 });
+require('./config/passport')(passport);
 
-var app = express();
-
-// view engine setup
-// all environments
 app.set('views', path.join(__dirname, 'views'));
-app.engine('handlebars', handlebars());
-app.set('view engine', 'handlebars');
+app.set('view engine', 'ejs'); // set up ejs for templating
 app.use(favicon());
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -54,58 +43,11 @@ app.use(session({secret: "SECRET"}));
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
-//app.use(app.router); <-- DEPRECATED
-// app.use(require('stylus').middleware(path.join(__dirname, 'public')));
-
-function userRequired(req, res, next) {
-  if (req.session.user_id) {
-    next();
-  } else {
-    res.redirect('/error');
-  }
-};
+app.use(express.static(path.join(__dirname, '/public')));
 
 // Add routes here
-app.get('/', index.view);
-app.post('/', index.login);
-app.get('/error', error.view);
-app.get('/signUp', signUp.view);
-app.get('/share', userRequired, share.view);
-app.get('/connect', userRequired, connect.view);
-app.get('/register', register.view);
-app.post('/register', register.create);
-
-
-
-
-app.use(express.static(path.join(__dirname, '/public')));
-/*
-passport.use(new LocalStrategy(
-    function(username, password, done) {
-        User.findOne({ username: username},function(err, user) {
-            if(err) {return done(err); }
-            if(!user){
-                return done(null, false, { message: 'Incorrect username.' });
-            }
-
-            hash(password, user.salt, function(err, hash) {
-                if(err) { return done(err); }
-                if(hash==user.hash) return done(null, user);
-                done(null, false, { message: 'Incorrect password.' });
-            });
-        });
-    })
-);
-
-passport.serializeUser(function(user, done) {
-  done(null, user.id);
-});
-
-passport.deserializeUser(function(id, done) {
-  User.findById(id, function(err, user) {
-    done(err, user);
-  });
-});*/
+// CHANGE: add to routes/routes.js
+require('./routes/routes.js')(app, passport);
 
 // development only
 if ('development' == app.get('env')) {
@@ -119,7 +61,7 @@ app.use(function(req, res, next) {
     next(err);
 });
 
-/// error handlers
+/* ERROR HANDLERS */
 
 // development error handler
 // will print stacktrace
@@ -145,41 +87,27 @@ app.use(function(err, req, res, next) {
 
 module.exports.app = app;
 
+var io = socket.listen(server);
+var active_connections = 0;
+io.sockets.on('connection', function (socket) {
+    active_connections++;
+    console.log(active_connections);
+    io.sockets.emit('user:connect', active_connections);
+    socket.on('disconnect', function () {
+      active_connections--;
+      io.sockets.emit('user:disconnect', active_connections);
+    });
+    // EVENT: User starts drawing something
+    socket.on('draw:progress', function (uid, co_ordinates) {  
+      io.sockets.emit('draw:progress', uid, co_ordinates)
+    });
+    // EVENT: User stops drawing something
+    socket.on('draw:end', function (uid, co_ordinates) { 
+      io.sockets.emit('draw:end', uid, co_ordinates)
+    });
+});
 
+// Launch app
 var server = http.createServer(app).listen(process.env.PORT || 3000, function(){
   console.log('Express server listening on port ' + 3000);
 });
-
-var io = socket.listen(server);
-
-// SOCKET IO
-var active_connections = 0;
-io.sockets.on('connection', function (socket) {
-
-    active_connections++;
-    console.log(active_connections);
-
-    io.sockets.emit('user:connect', active_connections);
-
-    socket.on('disconnect', function () {
-        active_connections--;
-        io.sockets.emit('user:disconnect', active_connections);
-    });
-
-      // EVENT: User starts drawing something
-    socket.on('draw:progress', function (uid, co_ordinates) {
-        
-       io.sockets.emit('draw:progress', uid, co_ordinates)
-
-    });
-
-    // EVENT: User stops drawing something
-    socket.on('draw:end', function (uid, co_ordinates) {
-        
-      io.sockets.emit('draw:end', uid, co_ordinates)
-
-    });
-  
-});
-
-

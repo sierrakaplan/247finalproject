@@ -1,10 +1,3 @@
-/*body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-a {
-  color: #00b7ff;
-}*/
 /*----------------------------
   Gallery Audio
 -----------------------------*/
@@ -335,7 +328,8 @@ button#record:disabled, button#stop:disabled {
 }
 .logbar  {
   position: absolute;
-  right: 0px;
+  top: 0px;
+  right: 80px;
   background-color: #f8c54d;
   padding: 20px;
   color: #fff;
@@ -348,10 +342,26 @@ button#record:disabled, button#stop:disabled {
   background-color: white;
   box-shadow: none !important;
 }
+button.pronoun-text {
+  border-style: none;
+  background-color: white;
+  box-shadow: none !important; 
+  color: #999999 !important;
+  font-size: 18px !important; 
+}
+#error-messages {
+  border-style: none;
+  box-shadow: none !important;
+  border-radius: 6px; 
+  font-size: 18px;
+  text-align: center;
+  color: #555;
+  font-size: 18px;
+}
 input:-webkit-autofill{
     -webkit-box-shadow: none !important;
 }
-.sign-in {
+.sign-in, .sign-in:visited {
   background-color: #ea5080;
   border-style: none;
 }
