@@ -207,6 +207,11 @@ button#record:disabled, button#stop:disabled {
   font-family: 'moonBold';
   src:url('../font/moonBold.ttf');
 }
+#login-button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
 #text-display {
   font-family: 'moonBold';
   font-size: 75px;

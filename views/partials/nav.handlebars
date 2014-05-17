@@ -2,14 +2,12 @@
     function changeText(text)
     {
         var display = document.getElementById('text-display');
-        display.innerHTML = "";
         display.innerHTML = text;
     }
          
     function defaultText()
     {
         var display = document.getElementById('text-display');
-        display.innerHTML = "";
         display.innerHTML = "Storytime";
     }     
 </script>
@@ -24,14 +22,16 @@
 		<li class="blue">
 			<a href="/connect" class="icon-paint2" onmouseover="changeText('Connect and draw')" onmouseout="defaultText()"></a>
 		</li>
-		<!--<li class="yellow">
-			<a href="/account" class="icon-beaker"></a>
+		<li id="login-button" class="yellow">
+			<a href="/register" class="icon-star"></a>
 		</li>
+		<!--
 		<li class="purple">
 			<a href="/chat" class="icon-comments"></a>
-		</li>-->
+		</li>
 		<li>
 			<div id="text-display">Storytime</div>
 		</li>
+		-->
 	</ul>
 </nav>

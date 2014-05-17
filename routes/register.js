@@ -1,9 +1,7 @@
 var User = require('../models/user');
-
 exports.view = function(req, res) {
 	res.render('register');
 }
-
 exports.create = function(req, res) {
 	User.signup(req.body.username, req.body.password, function(err, user) {
 		if (err) {

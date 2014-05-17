@@ -22,6 +22,7 @@ var error = require('./routes/error');
 var signUp = require('./routes/signUp');
 var share = require('./routes/share');
 var connect = require('./routes/connect');
+var register = require('./routes/register');
 // var tile = require('./routes/tile');
 // var result = require('./routes/result');
 
@@ -93,6 +94,7 @@ app.get('/error', error.view);
 app.get('/signUp', signUp.view);
 app.get('/share', share.view);
 app.get('/connect', connect.view);
+app.get('/register', register.view);
 app.post('/register', register.create);
 
 app.use(express.static(path.join(__dirname, '/public')));
