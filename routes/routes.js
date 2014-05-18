@@ -1,4 +1,5 @@
-// routes/routes.js
+var mongoose = require( 'mongoose' );
+var User = mongoose.model( 'User' );
 module.exports = function(app, passport) {
 	// =====================================
 	// HOME PAGE (with login links) ========
@@ -46,6 +47,7 @@ module.exports = function(app, passport) {
 	// we will use route middleware to verify this (the isLoggedIn function)
 	app.get('/profile', isLoggedIn, function(req, res) {
 		res.render('profile.ejs', {
+			message: req.flash('errorMessage'),
 			user : req.user // get the user out of session and pass to template
 		});
 	});
@@ -77,6 +79,15 @@ module.exports = function(app, passport) {
 	// =====================================
 	app.get('/connect', isLoggedIn, function(req, res) {
 		res.render('connect.ejs', {  message: req.flash('loginMessage'), user : req.user });
+	});
+
+	// =====================================
+	// LIST OF USERS ==============================
+	// =====================================
+	app.get('/list', function(req, res) {
+		User.find( function ( err, users, count ){
+    		res.render( 'list.ejs', { users : users });
+  		});
 	});
 };
 

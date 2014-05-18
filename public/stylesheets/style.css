@@ -200,6 +200,10 @@ button#record:disabled, button#stop:disabled {
   font-family: 'moonBold';
   src:url('../font/moonBold.ttf');
 }
+@font-face {
+  font-family: 'moon';
+  src:url('../font/moon.ttf');
+}
 #login-button {
   position: absolute;
   right: 10px;
@@ -380,4 +384,15 @@ input:-webkit-autofill{
 .register-link:hover {
   text-decoration: none;
   color: #3f3f3f;
+}
+/*----------------------------
+  Profile
+-----------------------------*/
+.text-paragraph {
+  font-family: 'moon';
+  font-size: 25px;
+}
+.text-title {
+  font-family: 'moonBold';
+  font-size: 40px;
 }
