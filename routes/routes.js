@@ -6,7 +6,7 @@ module.exports = function(app, passport) {
 	// HOME PAGE (with login links) ========
 	// =====================================
 	app.get('/', function(req, res) {
-		res.render('index.ejs', { message: req.flash('loginMessage'), user : req.user }); // load the index.ejs file
+		res.render('index.ejs', { title: "Storytime", message: req.flash('loginMessage'), user : req.user }); // load the index.ejs file
 	});
 
 	// =====================================
@@ -31,7 +31,7 @@ module.exports = function(app, passport) {
 	// show the signup form
 	app.get('/signup', function(req, res) {
 		// render the page and pass in any flash data if it exists
-		res.render('signup.ejs', { message: req.flash('signupMessage')});
+		res.render('signup.ejs', { title: "Sign up", message: req.flash('signupMessage'), user : req.user });
 	});
 
 	// process the signup form
@@ -49,7 +49,7 @@ module.exports = function(app, passport) {
 	app.get('/profile', function(req, res) {
 		if(req.user) {
 			res.render('profile.ejs', {
-				message: req.flash('errorMessage'),
+				title: "All about you", message: req.flash('errorMessage'),
 				user : req.user // get the user out of session and pass to template
 			});
 		} else {
@@ -69,14 +69,14 @@ module.exports = function(app, passport) {
 	// ERROR ==============================
 	// =====================================
 	app.get('/error', function(req, res) {
-		res.render('error.ejs', {  message: req.flash('errorMessage'), user : req.user });
+		res.render('error.ejs', {  title: "", message: req.flash('errorMessage'), user : req.user });
 	});
 
 	// =====================================
 	// SHARE ==============================
 	// =====================================
 	app.get('/share', isLoggedIn, function(req, res) {
-		res.render('share.ejs', {  message: req.flash('loginMessage'), user : req.user });
+		res.render('share.ejs', {  title: "", message: req.flash('loginMessage'), user : req.user });
 	});
 
 	// =====================================
@@ -84,7 +84,7 @@ module.exports = function(app, passport) {
 	// =====================================
 	app.get('/connect', isLoggedIn, function(req, res) {
 	
-		res.render('connect.ejs', {  message: req.flash('loginMessage'), user : req.user });
+		res.render('connect.ejs', {  title: "", message: req.flash('loginMessage'), user : req.user });
 	});
 
 	// =====================================
@@ -92,7 +92,7 @@ module.exports = function(app, passport) {
 	// =====================================
 	app.get('/list', function(req, res) {
 		User.find( function ( err, users, count ){
-    		res.render( 'list.ejs', { users : users });
+    		res.render( 'list.ejs', { title: "", users : users });
   		});
 	});
 
@@ -100,7 +100,7 @@ module.exports = function(app, passport) {
 	// RESOURCES =================================
 	// ===============================================
 	app.get('/resources', function(req, res) {
-		res.render('resources.ejs', { message: req.flash('loginMessage'), user : req.user }); 
+		res.render('resources.ejs', { title: "Resources", message: req.flash('loginMessage'), user : req.user }); 
 	});
 
 };

@@ -211,11 +211,18 @@ button#record:disabled, button#stop:disabled {
 }
 #text-display {
   font-family: 'moonBold';
+  font-size: 70px;
+  padding: 0px !important;
+  margin: 0px !important;
+  vertical-align: top;
+}
+.text-display {
+  font-family: 'moonBold';
   font-size: 75px;
-  position: absolute;
-  left: 320px;
-  top: -15px;
-  width: 500px;
+  position: relative;
+  margin-left: 10px;
+  left: 0px;
+  top: 0px;
 }
 #colorNav > ul, #text-display {
   margin:0 auto !important;
@@ -343,15 +350,18 @@ button#record:disabled, button#stop:disabled {
   width: 500%;
   z-index: 100;
 }
-.login-text, input:focus, input:hover, input:active  {
+.login-text  {
   border-style: none;
   background-color: white;
+}
+input:focus, input:active, textarea:focus, textarea:active  {
   box-shadow: none !important;
 }
-.pronoun-text {
-  border-style: none;
+.signup-text, #signup-story {
   background-color: white;
-  box-shadow: none !important; 
+}
+.pronoun-text {
+  background-color: white;
   color: #999999 !important;
   font-size: 18px !important; 
 }
@@ -410,4 +420,15 @@ input:-webkit-autofill{
   border: none;
   padding-top: 5px;
   padding-bottom: 5px;
+}
+/*----------------------------
+  Sign up
+-----------------------------*/
+.signup-container {
+  background-color: #f8c54d;
+  border-radius: 3px;
+  padding-left: 10px;
+}
+#signup-story {
+  rows: 5;
 }
