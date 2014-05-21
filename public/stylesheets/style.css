@@ -213,7 +213,7 @@ button#record:disabled, button#stop:disabled {
   font-family: 'moonBold';
   font-size: 75px;
   position: absolute;
-  left: 320px;
+  left: 390px;
   top: -15px;
   width: 500px;
 }
