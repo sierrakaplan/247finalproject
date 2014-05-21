@@ -18,7 +18,7 @@ var FacebookStrategy = require('passport-local').Strategy;
 
 //Setting up database
 var local_database_name = 'finalprojectdb';
-var local_database_uri  = 'mongodb://127.0.0.1:27017/' + local_database_name
+var local_database_uri  = 'mongodb://localhost/' + local_database_name
 var database_uri = process.env.MONGOLAB_URI || local_database_uri
 mongoose.connect(database_uri, function (err, res) {
     if (err) {
@@ -53,7 +53,7 @@ app.use(function (req, res, next) {
 
 // Add routes here
 // CHANGE: add to routes/routes.js
-require('./routes/routes.js')(app, passport);
+require('./routes/routes.js')(app, passport, server);
 
 // development only
 if ('development' == app.get('env')) {
@@ -93,29 +93,29 @@ app.use(function(err, req, res, next) {
     });
 });
 
-module.exports.app = app;
-
-var io = socket.listen(server);
-var active_connections = 0;
-io.sockets.on('connection', function (socket) {
-    active_connections++;
-    console.log(active_connections);
-    io.sockets.emit('user:connect', active_connections);
-    socket.on('disconnect', function () {
-      active_connections--;
-      io.sockets.emit('user:disconnect', active_connections);
-    });
-    // EVENT: User starts drawing something
-    socket.on('draw:progress', function (uid, co_ordinates) {  
-      io.sockets.emit('draw:progress', uid, co_ordinates)
-    });
-    // EVENT: User stops drawing something
-    socket.on('draw:end', function (uid, co_ordinates) { 
-      io.sockets.emit('draw:end', uid, co_ordinates)
-    });
-});
+//module.exports.app = app;
 
 // Launch app
 var server = http.createServer(app).listen(process.env.PORT || 3000, function(){
   console.log('Express server listening on port ' + 3000);
 });
+
+var io = socket.listen(server);
+  var active_connections = 0;
+  io.sockets.on('connection', function (socket) {
+      active_connections++;
+      console.log("Active connections: " + active_connections);
+      io.sockets.emit('user:connect', active_connections);
+      socket.on('disconnect', function () {
+        active_connections--;
+        io.sockets.emit('user:disconnect', active_connections);
+      });
+      // EVENT: User starts drawing something
+      socket.on('draw:progress', function (uid, co_ordinates) {  
+        io.sockets.emit('draw:progress', uid, co_ordinates)
+      });
+      // EVENT: User stops drawing something
+      socket.on('draw:end', function (uid, co_ordinates) { 
+        io.sockets.emit('draw:end', uid, co_ordinates)
+      });
+  });

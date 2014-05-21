@@ -3,8 +3,7 @@ tool.maxDistance = 45;
 
 
 // Initialise Socket.io
-var socket = io.connect('/connect');
-
+var socket = io.connect('/');
 // Random User ID
 // Used when sending data
 var uid =  (function() {
@@ -121,6 +120,8 @@ function onMouseDrag(event) {
 
 
 function onMouseUp(event) {
+
+     console.log("User mouse up - sending");
    
     // Close the users path
     path.add(event.point);
@@ -201,10 +202,12 @@ socket.on('draw:end', function( artist, data ) {
 }); 
 
 socket.on('user:connect', function(user_count) {
+    console.log("user connecting");
     update_user_count( user_count );
 });
 
 socket.on('user:disconnect', function(user_count) {
+    console.log("user disconnecting");
     update_user_count( user_count );
 });
 

@@ -25,11 +25,11 @@ function stopRecording(button) {
 }
 function changePrompt() {
   var elem = document.getElementById("One_img");
-  elem.src = "img/prompts.jpg";
+  elem.src = "img/share-2c.png";
 }
 function changeImage() {
   var elem = document.getElementById("One_img");
-  elem.src = "img/post_1.jpg";
+  elem.src = "img/listen-3b.png";
 }
 function createDownloadLink() {
   recorder && recorder.exportWAV(function(blob) {
@@ -45,6 +45,7 @@ function createDownloadLink() {
     recordingslist.appendChild(li);
   });
 }
+
 window.onload = function init() {
   try {
     window.AudioContext = window.AudioContext || window.webkitAudioContext;
