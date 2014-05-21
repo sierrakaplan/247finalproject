@@ -422,6 +422,16 @@ input:-webkit-autofill{
   padding-top: 5px;
   padding-bottom: 5px;
 }
+/*----------------------------
+  Sign up
+-----------------------------*/
+.signup-container {
+  background-color: #f8c54d;
+  border-radius: 3px;
+  padding-left: 10px;
+}
+#signup-story {
+  rows: 5;
 
 /*-----------------------------
   RESOURCES
