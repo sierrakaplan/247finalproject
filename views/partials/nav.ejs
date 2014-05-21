@@ -3,9 +3,9 @@
 	<ul>
 		<li class="green"><a href="/" class="icon-home2"></a></li>
 		<li class="red"><a href="/profile" class="icon-heart"></a></li>
-		<li class="blue"><a href="/connect" class="icon-paint"></a></li>
+		<li class="blue"><a href="/connect" class="icon-bubbles"></a></li>
 		<li id="login-button" class="yellow">
-			<a href="#" class="logbut show_hide icon-star"></a>
+			<a href="#" class="logbut show_hide icon-user3"></a>
 			<div class="logbar">
 			<div class="modal-body">
 				<% if (user) { %>
@@ -54,10 +54,10 @@
 <script type="text/javascript">
 	jQuery(document).ready(function($) {
 		jQuery.noConflict();
-		$(".icon-star").show();
+		$(".icon-user3").show();
 		if ($("#error-messages").length > 0) {
 			$(".logbar").show();
-			$(".icon-star").toggle(
+			$(".icon-user3").toggle(
 			function(){
 		  		$(".logbar").slideDown().slideToggle(400);
 			}, function() {
@@ -65,7 +65,7 @@
 			});
 		} else {
 			$(".logbar").hide();
-			$(".icon-star").toggle(
+			$(".icon-user3").toggle(
 			function(){
 		  		$(".logbar").slideUp().slideToggle(400);
 			},
