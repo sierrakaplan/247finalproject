@@ -17,19 +17,16 @@
 					<div class="form-group">
 						<input type="password" class="form-control input-lg login-text" name="password" placeholder="Password">
 					</div>
-					<div class="form-group btn-group btn-group-lg btn-group-justified">
-						<div class="btn-group btn-group-lg">
-  						<button type="button" class="btn btn-default pronoun-text" name="pronoun" value="he">He</button>
-  						</div>
-  						<div class="btn-group btn-group-lg">
-  						<button type="button" class="btn btn-default pronoun-text" name="pronoun" value="she">She</button>
-  						</div>
-  						<div class="btn-group btn-group-lg">
-  						<button type="button" class="btn btn-default pronoun-text" name="pronoun" value="they">They</button>
-  						</div>
+					<div class="form-group">
+						<input type="text" class="form-control input-lg login-text" name="birthyear" placeholder="Birthyear">
+					</div>
+					<div class="form-group btn-group btn-group-lg btn-group-justified" data-toggle="buttons">
+						<label class="btn btn-default pronoun-text active"><input type="radio" name="pronoun" value="he">He</label>
+						<label class="btn btn-default pronoun-text"><input type="radio" name="pronoun" value="she">She</label>
+						<label class="btn btn-default pronoun-text"><input type="radio" name="pronoun" value="they">They</label>
 					</div>
 					<div class="form-group">
-					  <button class="btn btn-primary btn-lg btn-block sign-in">Sign up</button>
+					  <button type="submit" value="submit" class="btn btn-primary btn-lg btn-block sign-in">Sign up</button>
 					</div>
 				</form>
 			</div>

@@ -347,7 +347,7 @@ button#record:disabled, button#stop:disabled {
   background-color: white;
   box-shadow: none !important;
 }
-button.pronoun-text {
+.pronoun-text {
   border-style: none;
   background-color: white;
   box-shadow: none !important; 
@@ -395,4 +395,18 @@ input:-webkit-autofill{
 .text-title {
   font-family: 'moonBold';
   font-size: 40px;
+}
+.page-header {
+  border-bottom: none;
+}
+.fa {
+  font-size: 35px;
+}
+.container {
+  width: 100%;
+}
+.well {
+  border: none;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }

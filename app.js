@@ -1,5 +1,4 @@
 var express = require('express');
-var app = express();
 var socket = require('socket.io');
 var http = require('http');
 var path = require('path');
@@ -30,6 +29,8 @@ mongoose.connect(database_uri, function (err, res) {
 });
 require('./config/passport')(passport);
 
+var app = express();
+app.use(bodyParser());
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs'); // set up ejs for templating
 app.use(favicon());
@@ -38,12 +39,17 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(methodOverride());
 app.use(cookieParser());
-app.use(bodyParser());
 app.use(session({secret: "SECRET"}));
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, '/public')));
+
+app.use(function (req, res, next) {
+  console.log(req.body) // populated!
+  req.db = {};
+  next()
+})
 
 // Add routes here
 // CHANGE: add to routes/routes.js
@@ -58,11 +64,13 @@ if ('development' == app.get('env')) {
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
-    next(err);
+    res.render('error', {
+            message: err.message,
+            error: err
+        });
 });
 
 /* ERROR HANDLERS */
-
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
