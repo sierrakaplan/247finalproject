@@ -1,10 +1,16 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
 	<%- include partials/header.ejs %>
+	<script type='text/javascript' src="js/jquery-1.11.1.min.js"></script>     
+    <script type='text/javascript' src="js/bootstrap.min.js"></script>
+    <script type='text/javascript' src="js/recordmp3.js"></script>
+    <script type='text/javascript' src="js/share.js"></script> 
 </head>
 <body>
 	<%- include partials/nav.ejs %>
+
+
 	<div id="text-display" class="page-header">All About You</div>
 	<div class="container">
 	<div class="row">
@@ -15,9 +21,6 @@
 						<strong>Username</strong>: <%= user.local.username %><br>
 						<strong>Password</strong>: <% for (var i = 0; i < user.local.password_length; i++) { %>*<% } %><br>
 						<strong>Pronoun</strong>: <%= user.local.pronoun %><br>
-						
-						
-						
 
 					</p>
 
@@ -27,5 +30,6 @@
 		</div>
 	</div>
 	</div>
+
 </body>
 </html>

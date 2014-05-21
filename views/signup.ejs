@@ -4,22 +4,20 @@
 </head>
 <body>
 	<%- include partials/nav-signup.ejs %>
-	<div id="audio-player" class="audio-player-wrapper">
- 		<div id="bg" class="audio-player-image"></div>
-		<nav id="listenNav">
-			<ul class="audio-player-controls">
-				<li class="green">
-					<a role="button" class="audio-player-button icon-backward"></a>
+	
+	<div id="bg"><img id="One_img" class="One_img" src="img/green_1.jpg"></div>
+		<nav id="playerNav">
+			<span id="recordingslist"></span>
+			<ul>
+				<li>
+					<button id="record" onclick="startRecording(this);"><span class="green icon-record"></span></button>
 				</li>
-				<li class="red">
-					<a role="button" class="audio-player-button audio-player-place-pause-button icon-play"></a>
-				</li>
-				<li class="blue">
-					<a role="button" class="audio-player-button icon-forward"></a>
+				<li>
+					<button id="stop" onclick="stopRecording(this);" disabled><span class="red icon-stop"></button>
 				</li>
 			</ul>
 		</nav>
-	</div>
-	<script type='text/javascript' src="js/audio.js"></script> 
+	</div>  
+
 </body>
 </html>

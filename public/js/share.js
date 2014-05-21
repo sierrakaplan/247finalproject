@@ -45,6 +45,7 @@ function createDownloadLink() {
     recordingslist.appendChild(li);
   });
 }
+
 window.onload = function init() {
   try {
     window.AudioContext = window.AudioContext || window.webkitAudioContext;

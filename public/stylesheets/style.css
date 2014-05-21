@@ -20,7 +20,7 @@ button#record:disabled, button#stop:disabled {
   display: none;
 }
 #bg {
-  position: fixed; 
+  position: absolute; 
   top: -50%; 
   left: -50%; 
   width: 200%; 
