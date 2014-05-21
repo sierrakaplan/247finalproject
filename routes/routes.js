@@ -6,7 +6,11 @@ module.exports = function(app, passport) {
 	// HOME PAGE (with login links) ========
 	// =====================================
 	app.get('/', function(req, res) {
-		res.render('index.ejs', { title: "Storytime", message: req.flash('loginMessage'), user : req.user }); // load the index.ejs file
+		User.find( function ( err, users, count ){
+			res.render('index.ejs', { title: "Storytime", message: req.flash('loginMessage'), user : req.user, users : users });
+    		//res.render( 'list.ejs', { title: "", users : users });
+  		});
+		 // load the index.ejs file
 	});
 
 	// =====================================
@@ -84,7 +88,7 @@ module.exports = function(app, passport) {
 	// =====================================
 	app.get('/connect', isLoggedIn, function(req, res) {
 	
-		res.render('connect.ejs', {  title: "", message: req.flash('loginMessage'), user : req.user });
+		res.render('connect.ejs', {  title: "Connect and draw", message: req.flash('loginMessage'), user : req.user });
 	});
 
 	// =====================================
@@ -100,14 +104,14 @@ module.exports = function(app, passport) {
 	// RESOURCES =================================
 	// ===============================================
 	app.get('/resources', function(req, res) {
-		res.render('resources.ejs', { title: "Resources", message: req.flash('loginMessage'), user : req.user }); 
+		res.render('resources.ejs', { title: "Additional resources", message: req.flash('loginMessage'), user : req.user }); 
 	});
 
 	// =========================================
 	// ABOUT US =================================
 	// ===============================================
 	app.get('/about_us', function(req, res) {
-		res.render('about_us.ejs', { message: req.flash('loginMessage'), user : req.user }); 
+		res.render('about_us.ejs', { title: "About us", message: req.flash('loginMessage'), user : req.user }); 
 	});
 
 };
