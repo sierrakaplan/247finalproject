@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <script type="text/javascript"> 
     function changeText(text)
      {
@@ -10,7 +11,7 @@
      {
          var display = document.getElementById('text-display');
          display.innerHTML = "";
-         display.innerHTML = "<%= title %>";
+         display.innerHTML = "Storytime";
      }     
 </script>
 <nav id="colorNav">
@@ -22,7 +23,6 @@
 		<% } %>
 		<li class="red"><a href="/resources" class="icon-aid" onmouseover="changeText('Additional resources')" onmouseout="defaultText()"></a></li>
 		<li class="green"><a href="/about_us" class="icon-heart" onmouseover="changeText('About us')" onmouseout="defaultText()"></a></li>
-		<li id="text-display"> <%= title %> </li>
 		<li id="login-button" class="yellow">
 			<a href="#" class="logbut show_hide icon-user3"></a>
 			<div class="logbar">
@@ -64,6 +64,9 @@
 			</div>
 			</div>
 		</li>
+		<!--
+		<li class="purple"><a href="/chat" class="icon-comments"></a></li>
+		-->
 	</ul>
 </nav>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>

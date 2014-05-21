@@ -103,6 +103,13 @@ module.exports = function(app, passport) {
 		res.render('resources.ejs', { title: "Resources", message: req.flash('loginMessage'), user : req.user }); 
 	});
 
+	// =========================================
+	// ABOUT US =================================
+	// ===============================================
+	app.get('/about_us', function(req, res) {
+		res.render('about_us.ejs', { message: req.flash('loginMessage'), user : req.user }); 
+	});
+
 };
 
 // route middleware to make sure a user is logged in

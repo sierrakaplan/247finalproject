@@ -219,10 +219,17 @@ button#record:disabled, button#stop:disabled {
 .text-display {
   font-family: 'moonBold';
   font-size: 75px;
+<<<<<<< HEAD
   position: relative;
   margin-left: 10px;
   left: 0px;
   top: 0px;
+=======
+  position: absolute;
+  left: 390px;
+  top: -15px;
+  width: 500px;
+>>>>>>> FETCH_HEAD
 }
 #colorNav > ul, #text-display {
   margin:0 auto !important;
@@ -362,7 +369,6 @@ input:focus, input:active, textarea:focus, textarea:active  {
 }
 .pronoun-text {
   background-color: white;
-  box-shadow: none !important; 
   color: #999999 !important;
   font-size: 18px !important; 
 }
@@ -422,6 +428,18 @@ input:-webkit-autofill{
   padding-top: 5px;
   padding-bottom: 5px;
 }
+<<<<<<< HEAD
+/*----------------------------
+  Sign up
+-----------------------------*/
+.signup-container {
+  background-color: #f8c54d;
+  border-radius: 3px;
+  padding-left: 10px;
+}
+#signup-story {
+  rows: 5;
+=======
 
 /*-----------------------------
   RESOURCES
@@ -474,4 +492,5 @@ input:-webkit-autofill{
   float:left;
   width:100%;
   color:red;
+>>>>>>> FETCH_HEAD
 }
