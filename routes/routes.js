@@ -95,6 +95,14 @@ module.exports = function(app, passport) {
     		res.render( 'list.ejs', { users : users });
   		});
 	});
+
+	// =========================================
+	// RESOURCES =================================
+	// ===============================================
+	app.get('/resources', function(req, res) {
+		res.render('resources.ejs', { message: req.flash('loginMessage'), user : req.user }); 
+	});
+
 };
 
 // route middleware to make sure a user is logged in
