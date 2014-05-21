@@ -1,10 +1,27 @@
 <!DOCTYPE html>
+<script type="text/javascript"> 
+    function changeText(text)
+     {
+         var display = document.getElementById('text-display');
+         display.innerHTML = "";
+         display.innerHTML = text;
+     }
+          
+     function defaultText()
+     {
+         var display = document.getElementById('text-display');
+         display.innerHTML = "";
+         display.innerHTML = "Storytime";
+     }     
+</script>
 <nav id="colorNav">
 	<ul>
-		<li class="green"><a href="/" class="icon-home2"></a></li>
-		<li class="red"><a href="/profile" class="icon-heart"></a></li>
-		<li class="blue"><a href="/connect" class="icon-bubbles"></a></li>
-		<li class="red"><a href="/resources" class="icon-aid"></a></li>
+		<li class="green"><a href="/" class="icon-home2" onmouseover="changeText('Home')" onmouseout="defaultText()"></a></li>
+		<% if (user) { %>
+			<li class="yellow"><a href="/profile" class="icon-profile" onmouseover="changeText('Profile')" onmouseout="defaultText()"></a></li>
+			<li class="blue"><a href="/connect" class="icon-bubbles" onmouseover="changeText('Connect and draw')" onmouseout="defaultText()"></a></li>
+		<% } %>
+		<li class="red"><a href="/resources" class="icon-aid" onmouseover="changeText('Additional resources')" onmouseout="defaultText()"></a></li>
 		<li id="login-button" class="yellow">
 			<a href="#" class="logbut show_hide icon-user3"></a>
 			<div class="logbar">

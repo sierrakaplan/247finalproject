@@ -212,9 +212,10 @@ button#record:disabled, button#stop:disabled {
 #text-display {
   font-family: 'moonBold';
   font-size: 75px;
-  position: relative;
-  left: 0px;
-  top: 0px;
+  position: absolute;
+  left: 320px;
+  top: -15px;
+  width: 500px;
 }
 #colorNav > ul, #text-display {
   margin:0 auto !important;
