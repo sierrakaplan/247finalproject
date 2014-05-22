@@ -52,7 +52,49 @@ module.exports = function(passport) {
                 newUser.local.pronoun = req.body.pronoun;
                 newUser.local.birthyear = req.body.birthyear;
                 newUser.local.story = req.body.story;
+                newUser.local.online = 0;
 				// save the user
+                newUser.save(function(err) {
+                    if (err) throw err;
+                    return done(null, newUser);
+                });
+            }
+        });    
+        });
+    }));
+    // =========================================================================
+    // LOCAL EDIT ============================================================
+    // =========================================================================
+    // we are using named strategies since we have one for login and one for signup
+    // by default, if there was no name, it would just be called 'local'
+    passport.use('local-edit-user', new LocalStrategy({
+        passReqToCallback : true // allows us to pass back the entire request to the callback
+    }, function(req, username, password, done) {
+        // asynchronous
+        // User.findOne wont fire unless data is sent back
+        process.nextTick(function() {
+        // find a user whose username is the same as the forms username
+        // we are checking to see if the user trying to login already exists
+        User.findOne({ 'local.username' :  username }, function(err, user) {
+            // if there are any errors, return the error
+            if (err) return done(err);
+            // check to see if theres already a user with that username
+            if (user) {
+                if (newUser.local.password)
+                return done(null, false, req.flash('signupMessage', 'That username is already taken.'));
+            } else {
+                // if there is no user with that username
+                // create the user
+                var newUser = new User();
+                // set the user's local credentials
+                newUser.local.username = username;
+                newUser.local.password = newUser.generateHash(password);
+                newUser.local.password_length = password.length;
+                newUser.local.pronoun = req.body.pronoun;
+                newUser.local.birthyear = req.body.birthyear;
+                newUser.local.story = req.body.story;
+                newUser.local.online = 0;
+                // save the user
                 newUser.save(function(err) {
                     if (err) throw err;
                     return done(null, newUser);

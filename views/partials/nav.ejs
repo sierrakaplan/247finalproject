@@ -28,14 +28,6 @@
 			<div class="logbar">
 			<div class="modal-body">
 				<% if (user) { %>
-					<form action="/profile" class="form col-md-12 center-block">
-						<% if (message.length > 0) { %>
-							<div class="form-group alert alert-danger"><%= message %></div>
-						<% } %>
-						<div class="form-group">
-						  <button class="btn btn-primary btn-lg btn-block sign-in">Profile</button>
-						</div>
-					</form>
 					<form action="/logout" class="form col-md-12 center-block">
 						<% if (message.length > 0) { %>
 							<div class="form-group alert alert-danger"><%= message %></div>

@@ -19,6 +19,9 @@ module.exports = function(app, passport) {
 	// show the login form 
 	app.get('/login', function(req, res) {
 		// render the page and pass in any flash data if it exists
+		console.log("Before: "+req.user.local.online);
+		req.user.local.online = 0;
+		console.log("After: "+req.user.local.online);
 		res.render('index.ejs', { message: req.flash('loginMessage'), user : req.user }); 
 	});
 
@@ -61,10 +64,24 @@ module.exports = function(app, passport) {
 		}
 	});
 
+	app.get('/profile-edit-user', function(req, res) {
+		// render the page and pass in any flash data if it exists
+		res.render('profile-edit-user.ejs', { title: "Edit information", message: "", user : req.user });
+	});
+
+	app.post('/profile-edit-user', passport.authenticate('local-edit-user', {
+		successRedirect : '/profile', // redirect to the secure profile section
+		failureRedirect : '/profile-edit-user', // redirect back to the signup page if there is an error
+		failureFlash : true // allow flash messages
+	}));
+
 	// =====================================
 	// LOGOUT ==============================
 	// =====================================
 	app.get('/logout', function(req, res) {
+		console.log("Before: "+req.user.local.online);
+		req.user.local.online = 0;
+		console.log("After: "+req.user.local.online);
 		req.logout();
 		res.redirect('/');
 	});
@@ -73,6 +90,9 @@ module.exports = function(app, passport) {
 	// ERROR ==============================
 	// =====================================
 	app.get('/error', function(req, res) {
+		console.log("Before: "+req.user.local.online);
+		req.user.local.online = 0;
+		console.log("After: "+req.user.local.online);
 		res.render('error.ejs', {  title: "", message: req.flash('errorMessage'), user : req.user });
 	});
 
@@ -80,6 +100,9 @@ module.exports = function(app, passport) {
 	// SHARE ==============================
 	// =====================================
 	app.get('/share', isLoggedIn, function(req, res) {
+		console.log("Before: "+req.user.local.online);
+		req.user.local.online = 0;
+		console.log("After: "+req.user.local.online);
 		res.render('share.ejs', {  title: "", message: req.flash('loginMessage'), user : req.user });
 	});
 
@@ -87,7 +110,9 @@ module.exports = function(app, passport) {
 	// CONNECT ==============================
 	// =====================================
 	app.get('/connect', isLoggedIn, function(req, res) {
-	
+		console.log("Before: "+req.user.local.online);
+		req.user.local.online = 1;
+		console.log("After: "+req.user.local.online);
 		res.render('connect.ejs', {  title: "Connect and draw", message: req.flash('loginMessage'), user : req.user });
 	});
 
@@ -104,6 +129,9 @@ module.exports = function(app, passport) {
 	// RESOURCES =================================
 	// ===============================================
 	app.get('/resources', function(req, res) {
+		console.log("Before: "+req.user.local.online);
+		req.user.local.online = 0;
+		console.log("After: "+req.user.local.online);
 		res.render('resources.ejs', { title: "Additional resources", message: req.flash('loginMessage'), user : req.user }); 
 	});
 
@@ -111,6 +139,9 @@ module.exports = function(app, passport) {
 	// ABOUT US =================================
 	// ===============================================
 	app.get('/about_us', function(req, res) {
+		console.log("Before: "+req.user.local.online);
+		req.user.local.online = 0;
+		console.log("After: "+req.user.local.online);
 		res.render('about_us.ejs', { title: "About us", message: req.flash('loginMessage'), user : req.user }); 
 	});
 

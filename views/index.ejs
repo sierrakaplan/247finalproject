@@ -6,18 +6,19 @@
 	<%- include partials/nav.ejs %>
 	<% if (user) { %>
 		<% users.forEach( function( single_user ){ %>
-			<% if (single_user.local.username != user.local.username) { %>
-				<div class="col-md-4">
+ 				<div class="col-md-4">
 					<div class="well">
-						<h3 class="text-title"><span class="fa fa-user"></span>&nbsp;<%= single_user.local.username %></h3>
-						<% if ((single_user.local.story.length > 0)) { %>
-							<p><%= single_user.local.story %></p>
-						<% } else { %>
-							<p>No story submitted.</p>
-						<% } %>
+						<h3 class="text-title">
+							<% if (single_user.local.online == 1) { %>
+								<a href="/connect"><span class="fa icon-bubbles online-status"></span></a>
+							<% } else { %>
+								<span class="fa icon-bubbles"></span>
+							<% } %>
+								&nbsp;<%= single_user.local.username %></span></h3>
+						<p><%= single_user.local.story %></p>
 					</div>
 				</div>
-			<% }}) %>
+			<% }) %>
 		<% } else { %>
 		<div id="audio-player" class="audio-player-wrapper">
 	 		<div id="bg" class="audio-player-image"></div>
