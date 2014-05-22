@@ -509,3 +509,9 @@ input:-webkit-autofill{
   width:100%;
   color:red;
 }
+
+.team_photo {
+  position:relative;
+  left:50%;
+  margin-left:-350px;
+}
