@@ -298,25 +298,7 @@ button#record:disabled, button#stop:disabled {
   width: 100%; 
   text-align: right;
 }
-/*----------------------------
-  Color Themes
------------------------------*/
 
-#playerNav li button span.green, #colorNav li.green{ background-color:#00c08b !important; color:#127a5d !important;}
-#playerNav li button span.red, #colorNav li.red{ background-color:#ea5080 !important;color:#aa2a52 !important;}
-#playerNav li button span.blue, #colorNav li.blue{ background-color:#53bfe2 !important;color:#2884a2 !important;}
-#playerNav li button span.yellow, #colorNav li.yellow{ background-color:#f8c54d !important;color:#ab8426 !important;}
-#playerNav li button span.purple. #colorNav li.purple{ background-color:#df6dc2 !important;color:#9f3c85 !important;}
-#listenNav li.green{ background-color:#00c08b !important; color:#127a5d !important;}
-#listenNav li.red{ background-color:#ea5080 !important;color:#aa2a52 !important;}
-#listenNav li.blue{ background-color:#53bfe2 !important;color:#2884a2 !important;}
-#listenNav li.yellow{ background-color:#f8c54d !important;color:#ab8426 !important;}
-#listenNav li.purple{ background-color:#df6dc2 !important;color:#9f3c85 !important;}
-
-
-#controls     { padding:0 0 8px 10px; border-bottom:2px solid #ccc;}
-.color      { display:inline-block; width:50px; height:50px; margin:10px 30px 0 0; border:2px solid #ccc; cursor:pointer; opacity:0.3 }
-.color.active { opacity:1; }
 
 /*----------------------------
   Gallery
@@ -400,6 +382,8 @@ input:-webkit-autofill{
   text-decoration: none;
   color: #3f3f3f;
 }
+
+
 /*----------------------------
   Profile
 -----------------------------*/
@@ -475,6 +459,7 @@ input:-webkit-autofill{
 #signup-story {
   rows: 5;
 }
+<<<<<<< HEAD
 /*----------------------------
   Gallery of users
 -----------------------------*/
@@ -500,6 +485,9 @@ input:-webkit-autofill{
   line-height: 175%;
   color: #545454 !important;
 }
+=======
+
+>>>>>>> FETCH_HEAD
 /*-----------------------------
   RESOURCES
   ------------------------------*/

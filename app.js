@@ -52,9 +52,11 @@ app.use(function (req, res, next) {
 })
 
 // Add routes here
-// CHANGE: add to routes/routes.js
-require('./routes/routes.js')(app, passport, server);
 
+// CHANGE: add to routes/routes.js
+require('./routes/routes.js')(app, passport);
+var userRoute = require('./routes/users.js');
+app.get('/users/getUser', userRoute.getUser);
 // development only
 if ('development' == app.get('env')) {
   app.use(errorHandler());
@@ -103,10 +105,12 @@ var server = http.createServer(app).listen(process.env.PORT || 3000, function(){
 var io = socket.listen(server);
   var active_connections = 0;
   io.sockets.on('connection', function (socket) {
+    //  console.log("Client: " + socket.id);
       active_connections++;
       console.log("Active connections: " + active_connections);
       io.sockets.emit('user:connect', active_connections);
       socket.on('disconnect', function () {
+        console.log("Disconnecting");
         active_connections--;
         io.sockets.emit('user:disconnect', active_connections);
       });
@@ -117,5 +121,10 @@ var io = socket.listen(server);
       // EVENT: User stops drawing something
       socket.on('draw:end', function (uid, co_ordinates) { 
         io.sockets.emit('draw:end', uid, co_ordinates)
+      });
+
+      // EVENT : User sends audio file
+      socket.on('message',function(message) {
+        socket.broadcast.emit('message', message);
       });
   });
