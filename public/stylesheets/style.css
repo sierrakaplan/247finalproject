@@ -211,8 +211,16 @@ button#record:disabled, button#stop:disabled {
 }
 #text-display {
   font-family: 'moonBold';
+  font-size: 70px;
+  padding: 0px !important;
+  margin: 0px !important;
+  vertical-align: top;
+}
+.text-display {
+  font-family: 'moonBold';
   font-size: 75px;
   position: relative;
+  margin-left: 10px;
   left: 0px;
   top: 0px;
 }
@@ -324,13 +332,17 @@ button#record:disabled, button#stop:disabled {
   width: 500%;
   z-index: 100;
 }
-.login-text, input:focus, input:hover, input:active  {
+.login-text  {
   border-style: none;
   background-color: white;
+}
+input:focus, input:active, textarea:focus, textarea:active  {
   box-shadow: none !important;
 }
-button.pronoun-text {
-  border-style: none;
+.signup-text, #signup-story {
+  background-color: white;
+}
+.pronoun-text {
   background-color: white;
   box-shadow: none !important; 
   color: #999999 !important;
@@ -419,3 +431,81 @@ input:-webkit-autofill{
 .color.active { opacity:1; }
 
 
+.page-header {
+  border-bottom: none;
+}
+.fa {
+  font-size: 35px;
+}
+.container {
+  width: 100%;
+}
+.well {
+  border: none;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+/*----------------------------
+  Sign up
+-----------------------------*/
+.signup-container {
+  background-color: #f8c54d;
+  border-radius: 3px;
+  padding-left: 10px;
+}
+#signup-story {
+  rows: 5;
+}
+
+/*-----------------------------
+  RESOURCES
+  ------------------------------*/
+
+.resource {
+  width:440px; 
+  padding: 2%; 
+  position:relative; 
+  float:left;
+}
+
+.resource_border {
+  border:2px solid;
+  border-radius:10px; 
+  width: 400px; 
+  height: 300px; 
+  display:table;
+}
+
+.resource_text {
+  padding: 10px;
+  text-align:left;
+  vertical-align:middle; 
+  display:table-cell;
+}
+
+.resource_text_title {
+  font-size:30px;
+}
+
+.resources_header {
+    font-family: 'moonBold';
+    position:relative;
+    left:1%;
+    font-size:60px;
+}
+
+.resources_intro {
+  position:relative;
+  left:2%;
+  width:95%;
+}
+
+.resources_type {
+  position:relative;
+  font-family: 'moonBold';
+  left:2%;
+  font-size:45px;
+  float:left;
+  width:100%;
+  color:red;
+}

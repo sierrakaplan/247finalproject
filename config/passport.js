@@ -50,8 +50,8 @@ module.exports = function(passport) {
                 newUser.local.password = newUser.generateHash(password);
                 newUser.local.password_length = password.length;
                 newUser.local.pronoun = req.body.pronoun;
-                newUser.local.birthyear = 1990;
-                newUser.local.story = -1;
+                newUser.local.birthyear = req.body.birthyear;
+                newUser.local.story = req.body.story;
 				// save the user
                 newUser.save(function(err) {
                     if (err) throw err;

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+	<%- include partials/header.ejs %>
+</head>
+<body>
+	<%- include partials/nav.ejs %>
+	<div id="audio-player" class="audio-player-wrapper">
+ 		<div id="bg" class="audio-player-image"></div>
+		<nav id="listenNav">
+			<ul class="audio-player-controls">
+				<li class="green">
+					<a role="button" class="audio-player-button icon-arrow-left"></a>
+				</li>
+				<li class="red">
+					<a role="button" class="audio-player-button audio-player-place-pause-button icon-play3"></a>
+				</li>
+				<li class="blue">
+					<a role="button" class="audio-player-button icon-arrow-right"></a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+	<script type='text/javascript' src="js/audio.js"></script> 
+</body>
+</html>

@@ -7,22 +7,38 @@
 </head>
 <body>
 	<%- include partials/nav.ejs %>
-	<div id="audio-player" class="audio-player-wrapper">
- 		<div id="bg" class="audio-player-image"></div>
-		<nav id="listenNav">
-			<ul class="audio-player-controls">
-				<li class="green">
-					<a role="button" class="audio-player-button icon-backward"></a>
-				</li>
-				<li class="red">
-					<a role="button" class="audio-player-button audio-player-place-pause-button icon-play"></a>
-				</li>
-				<li class="blue">
-					<a role="button" class="audio-player-button icon-forward"></a>
-				</li>
-			</ul>
-		</nav>
-	</div>
-	<script type='text/javascript' src="js/audio.js"></script> 
-</body>
+	<% if (user) { %>
+		<% users.forEach( function( single_user ){ %>
+			<% if (single_user.local.username != user.local.username) { %>
+				<div class="col-md-4">
+					<div class="well">
+						<h3 class="text-title"><span class="fa fa-user"></span>&nbsp;<%= single_user.local.username %></h3>
+						<% if ((single_user.local.story.length > 0)) { %>
+							<p><%= single_user.local.story %></p>
+						<% } else { %>
+							<p>No story submitted.</p>
+						<% } %>
+					</div>
+				</div>
+			<% }}) %>
+		<% } else { %>
+		<div id="audio-player" class="audio-player-wrapper">
+	 		<div id="bg" class="audio-player-image"></div>
+			<nav id="listenNav">
+				<ul class="audio-player-controls">
+					<li class="green">
+						<a role="button" class="audio-player-button icon-arrow-left"></a>
+					</li>
+					<li class="red">
+						<a role="button" class="audio-player-button audio-player-place-pause-button icon-play3"></a>
+					</li>
+					<li class="blue">
+						<a role="button" class="audio-player-button icon-arrow-right"></a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<script type='text/javascript' src="js/audio.js"></script>
+	<% } %> 
+	</body>
 </html>
