@@ -19,17 +19,10 @@ function createPeerConnection() {
 	RTCPeerConnection = webkitRTCPeerConnection || mozRTCPeerConnection;
 	var pc_config = {"iceServers":[]};
 	try {
-
-		
-
 		peerConn = new RTCPeerConnection(pc_config);
 		console.log('Adding local stream...');
 		peerConn.addStream(localStream); //{stream:localStream});
 		//peerConn.addStream({stream:localStream});
-
-
-
-
 
 	} catch (e) {
 		console.log("Failed to create PeerConnection, error: " + e.message);
@@ -122,14 +115,18 @@ socket.on('message', onMessage);
 function unmuteAudio() {
   $("#unmuteButton").hide();
   $("#muteButton").show();
-  navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || window.navigator.mozGetUserMedia || navigator.msGetUserMedia;
-  window.URL = window.URL || window.webkitURL;
 
-  navigator.getUserMedia({video: false, audio: true}, successCallback, errorCallback);
+  navigator.webskitGetUserMedia({video: false, audio: true}, successCallback, errorCallback);
   function successCallback(stream) {
+
+  	var audioContext = new webkitAudioContext();
+  	var mediaStreamSource = audioContext.createMediaStreamSource(stream);
+  	mediaStreamSource.connect(audioContext.destination);
+
+
+
       localStream = stream;
-      console.log("------------------");
-      console.log(localStream);
+   
       // if (audioStream.mozSrcObject) {
       //   audioStream.mozSrcObject = stream;
       //   audioStream.play();
@@ -145,7 +142,7 @@ function unmuteAudio() {
   	  peerConn.createOffer(setLocalAndSendMessage, errorCallback, mediaConstraints);
   }
   function errorCallback(error) {
-      console.error('An error occurred: [CODE ' + error.code + ']');
+      console.error('An error occurred getting local audio stream: [CODE ' + error.code + ']');
       return;
   }
  }

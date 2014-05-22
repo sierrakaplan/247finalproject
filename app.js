@@ -53,10 +53,13 @@ app.use(function (req, res, next) {
 
 // Add routes here
 
-// CHANGE: add to routes/routes.js
 require('./routes/routes.js')(app, passport);
 var userRoute = require('./routes/users.js');
 app.get('/users/getUser', userRoute.getUser);
+app.get('/users/getOnlineUsers', userRoute.getOnlineUsers);
+app.post('/users/addOnlineUser', userRoute.addOnlineUser);
+app.post('/users/removeOnlineUser', userRoute.removeOnlineUser);
+
 // development only
 if ('development' == app.get('env')) {
   app.use(errorHandler());
@@ -105,14 +108,20 @@ var server = http.createServer(app).listen(process.env.PORT || 3000, function(){
 var io = socket.listen(server);
   var active_connections = 0;
   io.sockets.on('connection', function (socket) {
+      var user = socket.manager.handshaken[socket.id].query.user;
+      console.log("User connecting: " + user);
     //  console.log("Client: " + socket.id);
+      //Tell everyone except this user that a new user is online
+      io.sockets.emit("user:online", user);
+
       active_connections++;
       console.log("Active connections: " + active_connections);
-      io.sockets.emit('user:connect', active_connections);
+      socket.broadcast.emit('user:connect', active_connections);
       socket.on('disconnect', function () {
         console.log("Disconnecting");
         active_connections--;
         io.sockets.emit('user:disconnect', active_connections);
+        io.sockets.emit("user:offline", user);
       });
       // EVENT: User starts drawing something
       socket.on('draw:progress', function (uid, co_ordinates) {  

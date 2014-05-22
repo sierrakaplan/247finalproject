@@ -6,6 +6,10 @@ module.exports = function(app, passport) {
 	// HOME PAGE (with login links) ========
 	// =====================================
 	app.get('/', function(req, res) {
+		req.session.user = req.user;
+		req.session.onlineUsers = req.session.onlineUsers || [];
+		console.log("req.session.onlineUsers=" + req.session.onlineUsers);
+		console.log("req.session.user=" + req.session.user);
 
 		User.find( function ( err, users, count ){
 			res.render('index.ejs', { title: "Storytime", message: req.flash('loginMessage'), user : req.user, users : users });

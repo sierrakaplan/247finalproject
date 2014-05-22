@@ -314,6 +314,13 @@ button#record:disabled, button#stop:disabled {
   width:5%;  
 }
 #recordingslist audio { display: inline; float:left; margin-bottom: 0;}
+
+.online-users {
+  display: block;
+  clear: both;
+  padding-top: 25px;
+  padding-left: 20px;
+}
 /*----------------------------
   Login
 -----------------------------*/

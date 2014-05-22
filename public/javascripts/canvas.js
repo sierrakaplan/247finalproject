@@ -7,10 +7,8 @@ https://github.com/byrichardpowell/draw
 */
 
 // Initialise Socket.io
-var socket = io.connect('/');
-var isAudioMuted = true;
-var audioStream = document.getElementById('audioStream');
-var localStream = null;
+//var socket = io.connect('/');
+
 // Random User ID
 // Used when sending data
 var uid =  (function() {
@@ -21,31 +19,6 @@ var uid =  (function() {
 } () );
 
 
-function unmuteAudio() {
-  navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || window.navigator.mozGetUserMedia || navigator.msGetUserMedia;
-  window.URL = window.URL || window.webkitURL;
-
-  navigator.getUserMedia({video: false, audio: true}, successCallback, errorCallback);
-  function successCallback(stream) {
-      localStream = stream;
-      if (audioStream.mozSrcObject) {
-        audioStream.mozSrcObject = stream;
-        audioStream.play();
-      } else {
-        try {
-          audioStream.src = window.URL.createObjectURL(stream);
-          audioStream.play();
-        } catch(e) {
-          console.log("Error setting video src: ", e);
-        }
-      }
-  }
-  function errorCallback(error) {
-      console.error('An error occurred: [CODE ' + error.code + ']');
-      return;
-  }
-
-}
 
 
 // JSON data ofthe users current drawing

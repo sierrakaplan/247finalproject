@@ -52,6 +52,8 @@ module.exports = function(passport) {
                 newUser.local.pronoun = req.body.pronoun;
                 newUser.local.birthyear = req.body.birthyear;
                 newUser.local.story = req.body.story;
+                var uniqueID = makeid();
+                newUser.local.chatID = uniqueID;
 				// save the user
                 newUser.save(function(err) {
                     if (err) throw err;
@@ -86,3 +88,14 @@ module.exports = function(passport) {
         });
     }));
 };
+
+
+function makeid() {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for( var i=0; i < 5; i++ )
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+}
