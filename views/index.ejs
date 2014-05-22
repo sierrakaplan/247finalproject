@@ -4,11 +4,6 @@
 	<meta charset="utf-8">
   	<script src='/socket.io/socket.io.js'> </script>
   	<script src='/javascripts/home.js'> </script>
-	<script>
-		$(document).ready(function() {
-			$.getJSON('/users/getOnlineUsers', function(onlineUsers) {}
-		});
-	</script>
 </head>
 <body>
 	<%- include partials/nav.ejs %>
@@ -18,13 +13,8 @@
  				<div class="col-md-4">
 					<div class="well">
 						<h3 class="text-title">
-							<% if (onlineUsers.contains(single_user)) { %>
-								<a href="/connect"><span class="fa icon-bubbles online-status"></span></a>
-							<% } else { %>
-								<a href="/connect"><span class="fa icon-bubbles online-status"></span></a>
-<!-- 								<span class="fa icon-bubbles"></span>
- -->							<% } %>
-								&nbsp;<%= single_user.local.username %></span></h3>
+							<a href="/connect"><span class="fa icon-bubbles online-status"></span></a>
+							&nbsp;<%= single_user.local.username %></span></h3>
 						<p><%= single_user.local.story %></p>
 					</div>
 				</div>
