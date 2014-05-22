@@ -11,7 +11,7 @@
      {
          var display = document.getElementById('text-display');
          display.innerHTML = "";
-         display.innerHTML = "<%= title %>";
+         display.innerHTML = "Storytime";
      }     
 </script>
 <nav id="colorNav">
@@ -23,20 +23,12 @@
 		<% } %>
 		<li class="red"><a href="/resources" class="icon-aid" onmouseover="changeText('Additional resources')" onmouseout="defaultText()"></a></li>
 		<li class="green"><a href="/about_us" class="icon-heart" onmouseover="changeText('About us')" onmouseout="defaultText()"></a></li>
-		<li id="text-display"> <%= title %> </li>
+		<li id="text-display">Storytime</li>
 		<li id="login-button" class="yellow">
 			<a href="#" class="logbut show_hide icon-user3"></a>
 			<div class="logbar">
 			<div class="modal-body">
 				<% if (user) { %>
-					<form action="/profile" class="form col-md-12 center-block">
-						<% if (message.length > 0) { %>
-							<div class="form-group alert alert-danger"><%= message %></div>
-						<% } %>
-						<div class="form-group">
-						  <button class="btn btn-primary btn-lg btn-block sign-in">Profile</button>
-						</div>
-					</form>
 					<form action="/logout" class="form col-md-12 center-block">
 						<% if (message.length > 0) { %>
 							<div class="form-group alert alert-danger"><%= message %></div>

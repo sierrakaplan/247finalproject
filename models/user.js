@@ -10,7 +10,8 @@ var userSchema = mongoose.Schema({
 		pronoun : String,
 		birthyear : Number,
 		story : String,
-        chatID : String
+        chatID : String,
+        online : Number
     }
 });
 

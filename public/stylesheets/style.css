@@ -299,7 +299,6 @@ button#record:disabled, button#stop:disabled {
   text-align: right;
 }
 
-
 /*----------------------------
   Gallery
 -----------------------------*/
@@ -346,6 +345,9 @@ button#record:disabled, button#stop:disabled {
 input:focus, input:active, textarea:focus, textarea:active  {
   box-shadow: none !important;
 }
+button:active, button:focus, button:visited {
+  background-color: #ea5080;
+}
 .signup-text, #signup-story {
   background-color: white;
 }
@@ -386,8 +388,6 @@ input:-webkit-autofill{
   text-decoration: none;
   color: #3f3f3f;
 }
-
-
 /*----------------------------
   Profile
 -----------------------------*/
@@ -463,7 +463,31 @@ input:-webkit-autofill{
 #signup-story {
   rows: 5;
 }
-
+/*----------------------------
+  Gallery of users
+-----------------------------*/
+.online-status {
+  color: #ea5080;
+  -webkit-animation: adjustHue 1s alternate infinite;
+}
+@-webkit-keyframes adjustHue {
+  0% {
+    -webkit-filter: hue-rotate(30deg);
+  }
+}
+/*----------------------------
+  Profile
+-----------------------------*/
+.edit-button {
+  width: 50% !important;
+  display: block;
+  margin: 0 auto;
+}
+.profile-text {
+  font-size: 18px;
+  line-height: 175%;
+  color: #545454 !important;
+}
 /*-----------------------------
   RESOURCES
   ------------------------------*/
@@ -515,4 +539,10 @@ input:-webkit-autofill{
   float:left;
   width:100%;
   color:red;
+}
+
+.team_photo {
+  position:relative;
+  left:50%;
+  margin-left:-350px;
 }
