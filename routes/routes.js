@@ -6,6 +6,7 @@ module.exports = function(app, passport) {
 	// HOME PAGE (with login links) ========
 	// =====================================
 	app.get('/', function(req, res) {
+		req.session.user = req.user;
 		res.render('index.ejs', { message: req.flash('loginMessage'), user : req.user }); // load the index.ejs file
 	});
 

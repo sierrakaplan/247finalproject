@@ -1,9 +1,16 @@
 tool.minDistance = 10;
 tool.maxDistance = 45;
 
+/*
+Based on collaborative drawing app code by Richard Powell
+https://github.com/byrichardpowell/draw
+*/
 
 // Initialise Socket.io
 var socket = io.connect('/');
+var isAudioMuted = true;
+var audioStream = document.getElementById('audioStream');
+var localStream = null;
 // Random User ID
 // Used when sending data
 var uid =  (function() {
@@ -13,6 +20,32 @@ var uid =  (function() {
     return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
 } () );
 
+
+function unmuteAudio() {
+  navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || window.navigator.mozGetUserMedia || navigator.msGetUserMedia;
+  window.URL = window.URL || window.webkitURL;
+
+  navigator.getUserMedia({video: false, audio: true}, successCallback, errorCallback);
+  function successCallback(stream) {
+      localStream = stream;
+      if (audioStream.mozSrcObject) {
+        audioStream.mozSrcObject = stream;
+        audioStream.play();
+      } else {
+        try {
+          audioStream.src = window.URL.createObjectURL(stream);
+          audioStream.play();
+        } catch(e) {
+          console.log("Error setting video src: ", e);
+        }
+      }
+  }
+  function errorCallback(error) {
+      console.error('An error occurred: [CODE ' + error.code + ']');
+      return;
+  }
+
+}
 
 
 // JSON data ofthe users current drawing
@@ -194,7 +227,7 @@ socket.on('draw:progress', function( artist, data ) {
 
 socket.on('draw:end', function( artist, data ) {
 
-    // It wasnt this user who created the event
+    // It wasn't this user who created the event
     if ( artist !== uid && data ) {
        end_external_path( JSON.parse( data ), artist );
     }
@@ -204,6 +237,7 @@ socket.on('draw:end', function( artist, data ) {
 socket.on('user:connect', function(user_count) {
     console.log("user connecting");
     update_user_count( user_count );
+
 });
 
 socket.on('user:disconnect', function(user_count) {
