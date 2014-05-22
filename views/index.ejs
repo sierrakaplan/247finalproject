@@ -9,6 +9,7 @@
 	<%- include partials/nav.ejs %>
 	<% if (user) { %>
 		<% users.forEach( function( single_user ){ %>
+			<% if (user.local.username != single_user.local.username) { %>
  				<div class="col-md-4">
 					<div class="well">
 						<h3 class="text-title">
@@ -22,6 +23,7 @@
 					</div>
 				</div>
 			<% }}) %>
+
 		<div class="online-users"> 
 			<h2 class="text-title">Online Users</h2>
 		</div>
