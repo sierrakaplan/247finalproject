@@ -13,20 +13,15 @@
  				<div class="col-md-4">
 					<div class="well">
 						<h3 class="text-title">
-							<% if (single_user.local.online == 1) { %>
-								<a href="/connect"><span class="fa icon-bubbles online-status"></span></a>
-							<% } else { %>
-								<span class="fa icon-bubbles online-status"></span>
-							<% } %>
-								&nbsp;<%= single_user.local.username %></span></h3>
+							<a href="/connect"><span class="fa icon-bubbles online-status"></span></a>
+							&nbsp;<%= single_user.local.username %></span></h3>
 						<p><%= single_user.local.story %></p>
 					</div>
 				</div>
 			<% }}) %>
-
-		<div class="online-users"> 
+<!-- 		<div class="online-users"> 
 			<h2 class="text-title">Online Users</h2>
-		</div>
+		</div> -->
 	<% } else { %>
 		<div id="audio-player" class="audio-player-wrapper">
 	 		<div id="bg" class="audio-player-image"></div>
