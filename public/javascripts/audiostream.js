@@ -50,8 +50,11 @@ function createPeerConnection() {
 
 
 	peerConn.onaddstream = function(evt) {
+		var remoteaudio = document.getElementById("remoteaudio");
 		console.log("Added remote stream");
 		remoteaudio.src = window.URL.createObjectURL(evt.stream);
+		console.log(remoteaudio);
+		remoteaudio.play();
 	};
 
 	// peerConn.on('addStream', function(evt) {
@@ -117,8 +120,6 @@ socket.on('message', onMessage);
  }
 
 function unmuteAudio() {
-  var audioStream = $("#audioStream");
-  console.log(audioStream);
   $("#unmuteButton").hide();
   $("#muteButton").show();
   navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || window.navigator.mozGetUserMedia || navigator.msGetUserMedia;
@@ -150,16 +151,10 @@ function unmuteAudio() {
  }
 
  function muteAudio() {
-  var audioStream = $("#audioStream");
   $("#muteButton").hide();
   $("#unmuteButton").show();
-  if(audioStream.mozSrcObject) {
-  	audioStream.mozSrcObject.stop();
-  	audioStream.src = null;
-  } else {
-  	audioStream.src = "";
-  	localStream.stop();
-  }
+
+  localStream.stop();
  }
 
   function createAnswerFailed() {
