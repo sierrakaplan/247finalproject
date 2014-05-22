@@ -1,4 +1,6 @@
-
+// exports.getChatID = function(req, res) {
+// 	req.session.user
+// }
 
 
 exports.getUser = function(req, res) {
