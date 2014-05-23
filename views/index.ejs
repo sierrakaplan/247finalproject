@@ -1,45 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<%- include partials/header.ejs %>
-	<meta charset="utf-8">
-  	<script src='/socket.io/socket.io.js'> </script>
-  	<script src='/javascripts/home.js'> </script>
 </head>
 <body>
-	<%- include partials/nav.ejs %>
-	<% if (user) { %>
-		<% users.forEach( function( single_user ){ %>
-			<% if (user.local.username != single_user.local.username) { %>
- 				<div class="col-md-4">
-					<div class="well">
-						<h3 class="text-title">
-							<a href="/connect"><span class="fa icon-bubbles online-status"></span></a>
-							&nbsp;<%= single_user.local.username %></span></h3>
-						<p><%= single_user.local.story %></p>
-					</div>
-				</div>
-			<% }}) %>
-<!-- 		<div class="online-users"> 
-			<h2 class="text-title">Online Users</h2>
-		</div> -->
-	<% } else { %>
-		<div id="audio-player" class="audio-player-wrapper">
-	 		<div id="bg" class="audio-player-image"></div>
-			<nav id="listenNav">
-				<ul class="audio-player-controls">
-					<li class="green">
-						<a role="button" class="audio-player-button icon-arrow-left"></a>
-					</li>
-					<li class="red">
-						<a role="button" class="audio-player-button audio-player-place-pause-button icon-play3"></a>
-					</li>
-					<li class="blue">
-						<a role="button" class="audio-player-button icon-arrow-right"></a>
-					</li>
-				</ul>
-			</nav>
-		</div>
-		<script type='text/javascript' src="js/audio.js"></script>
-	<% } %> 
-	</body>
+</body>
 </html>
