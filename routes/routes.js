@@ -1,13 +1,15 @@
 var mongoose = require('mongoose');
-var WeekModel = mongoose.model('Week', mongoose.Schema.Week); 
+var Week = require('../models/week.js');
 
 module.exports = function(app) {
 	app.get('/', function(req, res) {
-		return WeekModel.find(function (err, weeks) {
+		return Week.find(function (err, weeks) {
     		if (!err) {
+    			console.log("No error!");
     			console.log(weeks);
-      			return res.send(weeks);
+      			return res.render('index.ejs', { weeks: weeks});
     		} else {
+    			console.log("Error!");
       			return console.log(err);
     		}
   		});

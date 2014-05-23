@@ -6,7 +6,7 @@ var weekSchema = mongoose.Schema({
     endDate: Date,
     quote: String, 
     author: String,
-    stories: [{ type: Schema.ObjectId, ref: 'Story' }]
+    stories: [{ type: mongoose.Schema.ObjectId, ref: 'Story' }]
 });
 
 module.exports = mongoose.model('Week', weekSchema);
