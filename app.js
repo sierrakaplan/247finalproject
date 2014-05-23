@@ -1,75 +1,36 @@
-var express = require('express');
-var http = require('http');
-var path = require('path');
-var favicon = require('static-favicon');
-var methodOverride = require('method-override');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var session = require ('express-session');
-var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
-var flash = require('connect-flash');
-var errorHandler = require ('errorhandler');
-
-//Setting up database
-var local_database_name = 'finalprojectdb';
-var local_database_uri  = 'mongodb://localhost/' + local_database_name
-var database_uri = process.env.MONGOLAB_URI || local_database_uri
-mongoose.connect(database_uri, function (err, res) {
-    if (err) {
-      console.log ('Error connecting to: ' + database_uri + '. ' + err);
-    } else {
-      console.log ('Succeeded connected to: ' + database_uri);
-  }
-});
+// 1. Express requires these dependencies
+var express = require('express')
+  , routes = require('./routes')
+  , user = require('./routes/user')
+  , http = require('http')
+  , path = require('path');
 
 var app = express();
-app.use(bodyParser());
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs'); // set up ejs for templating
-app.use(favicon());
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
-app.use(methodOverride());
-app.use(cookieParser());
-app.use(session({secret: "SECRET"}));
-app.use(flash());
-app.use(express.static(path.join(__dirname, '/public')));
 
-require('./routes/routes.js')(app);
-
-if ('development' == app.get('env')) {
-  app.use(errorHandler());
-}
-
-app.use(function(req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    res.render('error', {
-            message: err.message,
-            error: err
-        });
+// 2. Configure our application
+app.configure(function(){
+  app.set('port', process.env.PORT || 3000);
+  app.set('views', __dirname + '/views');
+  app.set('view engine', 'ejs');
+  app.use(express.favicon());
+  app.use(express.logger('dev'));
+  app.use(express.bodyParser());
+  app.use(express.methodOverride());
+  app.use(app.router);
+  app.use(express.static(path.join(__dirname, 'public')));
 });
 
-if (app.get('env') === 'development') {
-    app.use(function(err, req, res, next) {
-        res.status(err.status || 500);
-        res.render('error', {
-            message: err.message,
-            error: err
-        });
-    });
-}
-
-app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-        message: err.message,
-        error: {}
-    });
+// 3. Configure error handling
+app.configure('development', function(){
+  app.use(express.errorHandler());
 });
 
-var server = http.createServer(app).listen(process.env.PORT || 3000, function(){
-  console.log('Express server listening on port ' + 3000);
+// 4. Setup Routes
+app.get('/', routes.index);
+app.get('/users', user.list);
+
+// 5. Enable Socket.io
+var server = http.createServer(app).listen( app.get('port') );
+var io = require('socket.io').listen(server, function() {
+  console.log("Express server listening on port " + app.get('port'));
 });
